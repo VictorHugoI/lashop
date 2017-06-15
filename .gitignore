@@ -8,10 +8,23 @@
 Homestead.json
 Homestead.yaml
 npm-debug.log
+.env.*.php
+.env.php
 .env
-
 composer.lock
+/resources/assets/bower
+/resources/assets/js
+/resources/assets/sass
+/resources/assets/themeuser
+/resources/assets/css/*_scss.*
+app/storage/
+/public/css
+/public/images
+/public/fonts
+/public/img
+/public/js
 .phpstorm.meta.php
 _ide_helper.php
 /public/mix-manifest.json
+
 

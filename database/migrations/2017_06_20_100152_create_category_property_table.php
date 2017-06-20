@@ -16,9 +16,9 @@ class CreateCategoryPropertyTable extends Migration
         Schema::create('category_property', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
-            $table->integer('category_id', false)->nullable();
-            $table->integer('property_id', false)->nullable();
-            $table->string('unit', '50')->nullable();
+            $table->unsignedInteger('category_id')->nullable();
+            $table->unsignedInteger('property_id')->nullable();
+            $table->unsignedTinyInteger('unit')->nullable();
             $table->timestamps();
         });
     }

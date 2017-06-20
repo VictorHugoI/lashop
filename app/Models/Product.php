@@ -29,7 +29,7 @@ class Product extends Model
 
     public function properties()
     {
-        return $this->belongsToMany(Property::class)->withPivot(['value', 'unit']);
+        return $this->belongsToMany(Property::class)->withPivot(['value']);
     }
 
     public function getProperty($name)
@@ -46,7 +46,8 @@ class Product extends Model
 
     public function getPropertyUnit($name)
     {
-        return $this->getProperty($name)->pivot->unit;
+        // return $this->getProperty($name)->pivot->unit;
+        // TODO: get unit from category_property => config
     }
 
     public function getAttribute($key)

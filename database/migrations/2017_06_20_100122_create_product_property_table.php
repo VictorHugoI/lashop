@@ -15,10 +15,9 @@ class CreateProductPropertyTable extends Migration
     {
         Schema::create('product_property', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('product_id', false)->nullable();
-            $table->integer('property_id', false)->nullable();
+            $table->integer('product_id')->nullable();
+            $table->integer('property_id')->nullable();
             $table->text('value')->nullable();
-            $table->string('unit', 50)->nullable();
             $table->timestamps();
         });
     }

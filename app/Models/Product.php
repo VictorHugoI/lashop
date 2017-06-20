@@ -35,7 +35,7 @@ class Product extends Model
     public function getProperty($name)
     {
         return $this->properties->first(function ($property) use ($name) {
-            return $property->name == $name;
+            return $property->name === $name;
         });
     }
 
@@ -55,8 +55,8 @@ class Product extends Model
         if (substr($key, 0, strlen($prefix)) === $prefix) {
             return $this->getPropertyValue(substr($key, strlen($prefix)));
         }
-        $prefix = 'unit_';
 
+        $prefix = 'unit_';
         if (substr($key, 0, strlen($prefix)) === $prefix) {
             return $this->getPropertyUnit(substr($key, strlen($prefix)));
         }

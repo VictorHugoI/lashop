@@ -1,5 +1,4 @@
 <?php
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -14,7 +13,9 @@
 Route::get('/', function () {
     return view('welcome');
 });
+Route::group(['namespace' => 'Admin', 'prefix' => 'admin'], function () {
 
+});
 Route::group(['namespace' => 'Customer', 'prefix' => 'customer'], function () {
 
 });

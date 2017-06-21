@@ -10,11 +10,12 @@
 |
 */
 Route::get('/', function () {
-    return view('welcome');
+    return view('admin.layout.master');
 });
 Route::group(['namespace' => 'Admin', 'prefix' => 'admin'], function () {
 
 });
 Route::group(['namespace' => 'Customer', 'prefix' => 'customer'], function () {
-    
+
 });
+

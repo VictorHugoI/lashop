@@ -5,6 +5,7 @@ const ADMIN_PATH = 'resources/assets/template/admin/';
 const USER_PATH = 'resources/assets/template/customer/';
 const USER_JS_PATH = USER_PATH + 'js/';
 const USER_CSS_PATH = USER_PATH + 'css/';
+const ADMIN_PATH = 'resources/assets/template/admin/';
 /*
  |--------------------------------------------------------------------------
  | Mix Asset Management
@@ -40,6 +41,8 @@ mix.scripts([
     USER_JS_PATH + 'revslider.js',
     USER_JS_PATH + 'owl.carousel.min.js',
 ], 'public/assets/js/customer.min.js');
+mix.js('resources/assets/js/app.js', 'public/js')
+   .sass('resources/assets/sass/app.scss', 'public/css');
 
 mix.copy([
     ADMIN_PATH + 'font_awesome/fonts',

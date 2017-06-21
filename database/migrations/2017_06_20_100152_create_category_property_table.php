@@ -18,7 +18,6 @@ class CreateCategoryPropertyTable extends Migration
             $table->string('name');
             $table->unsignedInteger('category_id')->nullable();
             $table->unsignedInteger('property_id')->nullable();
-            $table->unsignedTinyInteger('unit')->nullable();
             $table->timestamps();
         });
     }

@@ -18,6 +18,7 @@ class CreateProductPropertyTable extends Migration
             $table->unsignedInteger('product_id')->nullable();
             $table->unsignedInteger('property_id')->nullable();
             $table->text('value')->nullable();
+            $table->unsignedTinyInteger('unit')->nullable();
             $table->timestamps();
         });
     }

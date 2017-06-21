@@ -5,7 +5,6 @@ const ADMIN_PATH = 'resources/assets/template/admin/';
 const USER_PATH = 'resources/assets/template/customer/';
 const USER_JS_PATH = USER_PATH + 'js/';
 const USER_CSS_PATH = USER_PATH + 'css/';
-const ADMIN_PATH = 'resources/assets/template/admin/';
 /*
  |--------------------------------------------------------------------------
  | Mix Asset Management
@@ -17,8 +16,8 @@ const ADMIN_PATH = 'resources/assets/template/admin/';
  |
  */
 
-mix.js('resources/assets/js/app.js', 'public/assets/js')
-   .sass('resources/assets/sass/app.scss', 'public/assets/css');
+mix.js('resources/assets/js/app.js', 'public/js')
+   .sass('resources/assets/sass/app.scss', 'public/css');
 mix.copy(USER_PATH + 'images', 'public/assets/images');
 mix.copy(USER_PATH + 'products-images','public/assets/images/products-images');
 mix.copy(USER_PATH + 'fonts', 'public/assets/fonts');
@@ -41,16 +40,16 @@ mix.scripts([
 	USER_JS_PATH + 'revslider.js',
 	USER_JS_PATH + 'owl.carousel.min.js',
 ], 'public/assets/js/customer.min.js');
-mix.js('resources/assets/js/app.js', 'public/js')
-   .sass('resources/assets/sass/app.scss', 'public/css');
 
 mix.copy([
     ADMIN_PATH + 'font_awesome/fonts',
-], 'public/assets/fonts');
+], 'public/assets/admin/fonts');
+mix.copy([
+    ADMIN_PATH + 'font_awesome/fonts',
+], 'public/assets/admin/fonts');
 
-mix.copy(ADMIN_PATH + 'img', 'public/assets/img');
-mix.copy(ADMIN_PATH + 'css/patterns', 'public/assets/css/patterns');
-
+mix.copy(ADMIN_PATH + 'img', 'public/assets/admin/img');
+mix.copy(ADMIN_PATH + 'css/patterns', 'public/assets/admin/css/patterns');
 
 mix.styles([
     ADMIN_PATH + 'css/bootstrap.min.css',
@@ -59,7 +58,7 @@ mix.styles([
     ADMIN_PATH + 'js/plugins/gritter/jquery.gritter.css',
     ADMIN_PATH + 'css/animate.css',
     ADMIN_PATH + 'css/style.css',
-], 'public/assets/css/admin.min.css');
+], 'public/assets/admin/css/admin.min.css');
 
 mix.scripts([
     ADMIN_PATH + 'js/jquery-2.1.1.js',
@@ -81,4 +80,8 @@ mix.scripts([
     ADMIN_PATH + 'js/demo/sparkline-demo.js',
     ADMIN_PATH + 'js/plugins/chartJs/Chart.min.js',
     ADMIN_PATH + 'js/plugins/toastr/toastr.min.js',
-], 'public/assets/js/admin.min.js');
+], 'public/assets/admin/js/admin.min.js');
+
+mix.scripts([
+    ADMIN_PATH + 'js/property.js',
+], 'public/assets/admin/js/page/property.js');

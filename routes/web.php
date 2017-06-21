@@ -14,7 +14,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 Route::group(['namespace' => 'Admin', 'prefix' => 'admin'], function () {
-
+    Route::resource('/property', 'PropertyController');
 });
 Route::group(['namespace' => 'Customer', 'prefix' => 'customer'], function () {
 

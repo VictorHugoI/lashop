@@ -13,7 +13,7 @@ Route::get('/', function () {
     return view('admin.layout.master');
 });
 Route::group(['namespace' => 'Admin', 'prefix' => 'admin'], function () {
-
+    Route::resource('/property', 'PropertyController');
 });
 Route::group(['namespace' => 'Customer', 'prefix' => 'customer'], function () {
 

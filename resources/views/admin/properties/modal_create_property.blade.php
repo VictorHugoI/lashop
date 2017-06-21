@@ -1,0 +1,35 @@
+<div id="overlay"></div>
+{!! Form::open(['action' => 'Admin\PropertyController@store', 'class' => 'createForm']) !!}
+    <div class="col-lg-4 modalCreateProperty">
+        <div class="ibox float-e-margins">
+            <div class="ibox-title col-sm-10">
+                <h5>Create new attribute</h5>
+                <div class="ibox-tools">
+                    <a class="close-link">
+                        <i class="fa fa-times"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="ibox-content col-sm-10">
+                <div class="form-horizontal col-sm-8 col-sm-offset-2">
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">Name</label>
+                        <div class="col-sm-10">
+                            {!! Form::text('name', '', ['class' => 'form-control', 'required' => 'required']) !!}
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">Label</label>
+                        <div class="col-sm-10">
+                            {!! Form::text('label', '', ['class' => 'form-control', 'required' => 'required']) !!}
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="ibox-content col-sm-10" style="text-align: center">
+                <button class="btn btn-primary btnSave" type="button">Save</button>
+            </div>
+        </div>
+    </div>
+{!! Form::close() !!}

@@ -22,6 +22,7 @@ Route::group(['namespace' => 'Customer', 'prefix' => 'customer'], function () {
 Route::group(['middleware' => 'web'], function () {
     Route::group(['namespace' => 'Admin', 'prefix' => 'admin' ], function () {
         Route::get('home', 'HomeController@index')->middleware('admin.auth');
+
         Route::group(['middleware' => 'admin.guest'], function () {
             Route::get('/', 'Auth\LoginController@showLoginForm');
             Route::get('login', 'Auth\LoginController@showLoginForm');
@@ -31,5 +32,10 @@ Route::group(['middleware' => 'web'], function () {
         });
 
         Route::post('logout', 'Auth\LoginController@logout')->name('admin.logout');
+
+        Route::resource('/property', 'PropertyController');
     });
 });
+/*Route::group(['namespace' => 'Admin', 'prefix' => 'admin'], function () {
+
+});*/

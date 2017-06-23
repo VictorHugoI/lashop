@@ -7,6 +7,7 @@
     <title>Admin | Dashboard</title>
     {{ Html::style('assets/css/admin.min.css') }}
     @yield('css')
+    @stack('styles')
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <script>
         window.Laravel = <?php echo json_encode([
@@ -23,6 +24,19 @@
     {{--@include('admin.layout.section.right_sidebar_master')--}}
 
     {{ Html::script('assets/js/admin.min.js') }}
-    @yield('javascript')
+
+    <script>
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+    </script>
+    @stack('scripts')
+    <script>
+        $(document).ready(function(){
+            loadDataTable();
+        });
+    </script>
 </body>
 </html>

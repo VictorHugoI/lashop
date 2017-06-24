@@ -13,11 +13,7 @@
 
 Route::get('/', function () {
     return view('welcome');
-});
-
-Route::group(['namespace' => 'Customer', 'prefix' => 'customer'], function () {
-
-});
+})->name('home')->middleware('auth');
 
 Route::group(['middleware' => 'web'], function () {
     Route::group(['namespace' => 'Admin', 'prefix' => 'admin' ], function () {
@@ -36,6 +32,15 @@ Route::group(['middleware' => 'web'], function () {
         Route::resource('/property', 'PropertyController');
     });
 });
+
 /*Route::group(['namespace' => 'Admin', 'prefix' => 'admin'], function () {
 
 });*/
+
+Route::group(['namespace' => 'Auth', 'prefix' => 'auth', 'middleware' => 'guest'], function () {
+    Route::get('login', 'LoginController@showLoginForm');
+    Route::post('login', 'LoginController@login');
+    Route::get('register', 'RegisterController@showRegistrationForm');
+    Route::post('register', 'RegisterController@register');
+    Route::post('logout', 'LoginController@logout'); // GUEST middleware???
+});

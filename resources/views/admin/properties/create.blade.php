@@ -1,4 +1,5 @@
 @extends('admin.layout.master')
+
 @push('scripts')
     {{ Html::script('assets/admin/js/plugins/dataTables/datatables.min.js') }}
     <script>
@@ -64,12 +65,18 @@
                 ]
             });
         }
+        
+        $(document).ready(function() {
+            loadDataTable();
+        });
 
     </script>
 @endpush
+
 @push('styles')
     {{ Html::style('assets/admin/css/plugins/dataTables/datatables.min.css') }}
 @endpush
+
 @section('content')
     <div class="row wrapper border-bottom white-bg page-heading">
         <div class="col-lg-10">

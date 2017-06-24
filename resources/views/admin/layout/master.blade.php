@@ -33,10 +33,5 @@
         });
     </script>
     @stack('scripts')
-    <script>
-        $(document).ready(function(){
-            loadDataTable();
-        });
-    </script>
 </body>
 </html>

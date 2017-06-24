@@ -4,7 +4,7 @@
             <li class="nav-header">
                 <div class="dropdown profile-element">
                     <span>
-                        <img alt="image" class="img-circle" src="img/profile_small.jpg"/>
+                        <img alt="image" class="img-circle" src="{{ url('assets/admin/img/profile_small.jpg') }}"/>
                     </span>
                     <a data-toggle="dropdown" class="dropdown-toggle">
                         <span class="clear">
@@ -66,6 +66,16 @@
                     <i class="fa fa-th-large"></i>
                     <span class="nav-label">User Management</span>
                 </a>
+            </li>
+            <li>
+                <a href="{{ route('property.index') }}">
+                    <i class="fa fa-th-large"></i>
+                    <span class="nav-label">Property Management</span>
+                    <span class="fa arrow"></span>
+                </a>
+                <ul class="nav nav-second-level">
+                    <li><a>Push property to category</a></li>
+                </ul>
             </li>
         </ul>
     </div>

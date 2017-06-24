@@ -18,6 +18,7 @@ Route::get('/', function () {
 Route::group(['middleware' => 'web'], function () {
     Route::group(['namespace' => 'Admin', 'prefix' => 'admin' ], function () {
         Route::get('home', 'HomeController@index')->middleware('admin.auth');
+
         Route::group(['middleware' => 'admin.guest'], function () {
             Route::get('/', 'Auth\LoginController@showLoginForm');
             Route::get('login', 'Auth\LoginController@showLoginForm');
@@ -27,13 +28,19 @@ Route::group(['middleware' => 'web'], function () {
         });
 
         Route::post('logout', 'Auth\LoginController@logout')->name('admin.logout');
+
+        Route::resource('/property', 'PropertyController');
     });
 });
+
+/*Route::group(['namespace' => 'Admin', 'prefix' => 'admin'], function () {
+
+});*/
 
 Route::group(['namespace' => 'Auth', 'prefix' => 'auth', 'middleware' => 'guest'], function () {
     Route::get('login', 'LoginController@showLoginForm');
     Route::post('login', 'LoginController@login');
     Route::get('register', 'RegisterController@showRegistrationForm');
     Route::post('register', 'RegisterController@register');
-    Route::post('logout', 'LoginController@logout');
+    Route::post('logout', 'LoginController@logout'); // GUEST middleware???
 });

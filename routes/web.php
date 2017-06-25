@@ -30,6 +30,8 @@ Route::group(['middleware' => 'web'], function () {
         Route::post('logout', 'Auth\LoginController@logout')->name('admin.logout');
 
         Route::resource('/property', 'PropertyController');
+
+        Route::resource('categories', 'CategoriesController');
     });
 });
 

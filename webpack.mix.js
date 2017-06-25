@@ -1,6 +1,7 @@
 const { mix } = require('laravel-mix');
 
 const ADMIN_PATH = 'resources/assets/template/admin/';
+const ADMIN_JS_CATEGORY_PATH = 'resources/assets/admin/category/';
 
 const USER_PATH = 'resources/assets/template/customer/';
 const USER_JS_PATH = USER_PATH + 'js/';
@@ -79,3 +80,22 @@ mix.scripts([
     ADMIN_PATH + 'js/plugins/chartJs/Chart.min.js',
     ADMIN_PATH + 'js/plugins/toastr/toastr.min.js',
 ], 'public/assets/js/admin.min.js');
+
+mix.styles([
+    ADMIN_JS_CATEGORY_PATH + 'app/styles/styles.css',
+    ADMIN_JS_CATEGORY_PATH + 'vendor/ducksboard-gridster.js-3140374/dist/jquery.gridster.css',
+], 'public/assets/css/admin/category.min.css');
+
+mix.scripts([
+    ADMIN_JS_CATEGORY_PATH + 'vendor/ducksboard-gridster.js-3140374/dist/jquery.gridster.js',
+    ADMIN_JS_CATEGORY_PATH + 'app/rich-functional-list/jquery.rich-functional-list.js',
+    ADMIN_JS_CATEGORY_PATH + 'app/controllers/data-access.js',
+    ADMIN_JS_CATEGORY_PATH + 'app/controllers/parse-data.js',
+    ADMIN_JS_CATEGORY_PATH + 'app/controllers/parse-dom.js',
+    ADMIN_JS_CATEGORY_PATH + 'app/controllers/controller.js',
+    ADMIN_JS_CATEGORY_PATH + 'app/view.js',
+], 'public/assets/js/admin/category.min.js');
+
+mix.copy([
+    ADMIN_JS_CATEGORY_PATH + 'resources'
+], 'public/assets/resources');

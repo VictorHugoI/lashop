@@ -4,6 +4,7 @@
         <th>Property name</th>
         <th>Label for property</th>
         <th>Action</th>
+        <th>Chosen</th>
     </tr>
     </thead>
     <tbody class="tableContent">

@@ -68,14 +68,11 @@
                 </a>
             </li>
             <li>
-                <a href="{{ route('property.index') }}">
+                <a href="{{ route('categoryProperty.index') }}">
                     <i class="fa fa-th-large"></i>
-                    <span class="nav-label">Property Management</span>
+                    <span class="nav-label">Add property</span>
                     <span class="fa arrow"></span>
                 </a>
-                <ul class="nav nav-second-level">
-                    <li><a>Push property to category</a></li>
-                </ul>
             </li>
         </ul>
     </div>

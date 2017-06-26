@@ -31,7 +31,10 @@ Route::group(['middleware' => 'web'], function () {
 
         Route::resource('/property', 'PropertyController');
 
-        Route::resource('categories', 'CategoriesController');
+        Route::resource('/categoryProperty', 'CategoryPropertyController', ['except' => ['update']]);
+        Route::get('/categoryProperty/{categoryId}/{properId}', 'CategoryPropertyController@update')->name('categoryProperty.update');
+
+        Route::resource('/categories', 'CategoriesController');
     });
 });
 

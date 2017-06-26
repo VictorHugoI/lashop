@@ -43,3 +43,5 @@ Route::group(['namespace' => 'Auth', 'prefix' => 'auth', 'middleware' => 'guest'
     Route::post('register', 'RegisterController@register');
     Route::post('logout', 'LoginController@logout'); // GUEST middleware???
 });
+Route::get('/home', 'Customer\HomeController@index');
+Route::resource('carts', 'Customer\CartController');

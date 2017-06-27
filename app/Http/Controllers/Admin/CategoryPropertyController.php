@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Requests\PropertyRequest;
 use App\Models\Category;
+use App\Models\CategoryProperty;
 use App\Models\Property;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
-class PropertyController extends Controller
+class CategoryPropertyController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,9 +17,9 @@ class PropertyController extends Controller
      */
     public function index()
     {
-        $properties = Property::all();
+        $categories = Category::getAllCategoriesOption();
 
-        return view('admin.properties.create', compact('properties'));
+        return view('admin.categoryProperty.add_property_category', compact( 'categories'));
     }
 
     /**
@@ -29,9 +29,7 @@ class PropertyController extends Controller
      */
     public function create()
     {
-        $properties = Property::all();
-
-        return view('admin.properties.create', compact('properties'));
+        //
     }
 
     /**
@@ -40,17 +38,9 @@ class PropertyController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(PropertyRequest $request)
+    public function store(Request $request)
     {
-        Property::create($request->all());
-        $properties = Property::all();
-        $chosenProperties = Category::find($request->catetegoryId)->categoryProperties;
-        $id = $request->catetegoryId;
-
-        return response()->json([
-            'table' => view('admin.categoryProperty.component.table_property',
-                compact('properties', 'id', 'chosenProperties'))->render(),
-        ]);
+        //
     }
 
     /**
@@ -61,7 +51,13 @@ class PropertyController extends Controller
      */
     public function show($id)
     {
-        //
+        $properties = Property::all();
+        $chosenProperties = Category::find($id)->categoryProperties;
+
+        return response()->json([
+            'view' => view('admin.categoryProperty.component.table_property',
+                compact('properties', 'chosenProperties', 'id'))->render(),
+        ]);
     }
 
     /**
@@ -72,11 +68,7 @@ class PropertyController extends Controller
      */
     public function edit($id)
     {
-        $property = Property::find($id);
 
-        return response()->json([
-            'view' => view('admin.properties.component.modal_of_property', compact('property'))->render(),
-        ]);
     }
 
     /**
@@ -86,14 +78,9 @@ class PropertyController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(PropertyRequest $request, $id)
+    public function update($categoryId, $propertyId)
     {
-        Property::find($id)->update($request->all());
-
-        return response()->json([
-            'name' => $request->name,
-            'label' => $request->label,
-        ]);
+        Category::find($categoryId)->properties()->toggle(Property::find($propertyId));
     }
 
     /**

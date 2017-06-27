@@ -8,5 +8,8 @@
             <button class="btn btn-warning btn-xs btnDelete">Delete </button>
         @endif
     </td>
+    <td style="text-align: center">
+        <input type="checkbox" class="i-checks">
+    </td>
 </tr>
 

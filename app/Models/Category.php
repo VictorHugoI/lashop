@@ -9,6 +9,8 @@ class Category extends Model
 {
     use SoftDeletes;
 
+    protected $children = array();
+
     protected $fillable = [
         'name',
         'parent_id',
@@ -18,6 +20,16 @@ class Category extends Model
     public function products()
     {
         return $this->hasMany(Product::class);
+    }
+
+    public function categoryProperties()
+    {
+        return $this->hasMany(CategoryProperty::class);
+    }
+
+    public function properties()
+    {
+        return $this->belongsToMany(Property::class, 'category_property', 'category_id', 'property_id');
     }
 
     /**
@@ -48,12 +60,10 @@ class Category extends Model
 
         $options = static::recursive($categories);
 
-        // $options = static::buildTree($options);
-
         return $options;
     }
 
-    public static function buildTree($elements, $parentId = 0) 
+    public static function buildTree($elements, $parentId = 0)
     {
         $branch = [];
 
@@ -71,7 +81,7 @@ class Category extends Model
         return $branch;
     }
 
-    public static function saveData($categories, $parentId = 0, $options = []) 
+    public static function saveData($categories, $parentId = 0, $options = [])
     {
         foreach ($categories as $key => $val) {
             array_push($options, $val['id']);
@@ -85,11 +95,34 @@ class Category extends Model
             $category->position = count($options);
 
             $category->save();
-            
+
             if (!empty($val['children'])) {
                 $options = static::saveData($val['children'], $val['id'] != 0 ? $val['id'] : $category->id, $options);
             }
         }
+        return $options;
+    }
+
+    public static function getAllCategories($categories, $parentId = 0, $indent = '', $options = [])
+    {
+        foreach ($categories as $key => $category) {
+            if ($category->parent_id === $parentId) {
+                $options[$category->id] = $indent . $category->name;
+                $categories->pull($key);
+                $options = static::getAllCategories($categories, $category->id, $indent . '--', $options);
+            }
+        }
+        return $options;
+    }
+
+    /**
+     * Get recursive all categories.
+     *
+     */
+    public static function getAllCategoriesOption()
+    {
+        $categories = Category::all(['id', 'parent_id', 'name']);
+        $options = static::getAllCategories($categories);
         return $options;
     }
 }

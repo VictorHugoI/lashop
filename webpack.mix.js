@@ -57,6 +57,8 @@ mix.styles([
     ADMIN_PATH + 'js/plugins/gritter/jquery.gritter.css',
     ADMIN_PATH + 'css/animate.css',
     ADMIN_PATH + 'css/style.css',
+    ADMIN_PATH + 'css/plugins/iCheck/custom.css',
+    ADMIN_PATH + 'css/plugins/awesome-bootstrap-checkbox/awesome-bootstrap-checkbox.css',
 ], 'public/assets/css/admin.min.css');
 
 mix.scripts([

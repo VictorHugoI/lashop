@@ -23,24 +23,18 @@ Route::group(['middleware' => 'web'], function () {
             Route::get('/', 'Auth\LoginController@showLoginForm');
             Route::get('login', 'Auth\LoginController@showLoginForm');
             Route::post('login', 'Auth\LoginController@login')->name('admin.login');
-            Route::get('register', 'Auth\RegisterController@showRegistrationForm');
-            Route::post('register', 'Auth\RegisterController@register');
         });
 
         Route::post('logout', 'Auth\LoginController@logout')->name('admin.logout');
-
         Route::resource('/property', 'PropertyController');
-
         Route::resource('/categoryProperty', 'CategoryPropertyController', ['except' => ['update']]);
-        Route::get('/categoryProperty/{categoryId}/{properId}', 'CategoryPropertyController@update')->name('categoryProperty.update');
-
+        Route::get(
+            '/categoryProperty/{categoryId}/{properId}',
+            'CategoryPropertyController@update'
+        )->name('categoryProperty.update');
         Route::resource('/categories', 'CategoriesController');
     });
 });
-
-/*Route::group(['namespace' => 'Admin', 'prefix' => 'admin'], function () {
-
-});*/
 
 Route::group(['namespace' => 'Auth', 'prefix' => 'auth', 'middleware' => 'guest'], function () {
     Route::get('login', 'LoginController@showLoginForm');

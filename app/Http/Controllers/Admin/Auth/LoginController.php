@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use App\Models\Admin;
-use Auth;
+use AdminAuth;
 
 class LoginController extends Controller
 {
@@ -29,6 +29,6 @@ class LoginController extends Controller
 
     protected function guard()
     {
-        return Auth::guard('admin');
+        return AdminAuth::guard();
     }
 }

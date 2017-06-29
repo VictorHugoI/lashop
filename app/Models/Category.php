@@ -51,6 +51,31 @@ class Category extends Model
         return $options;
     }
 
+
+    /**
+     * [Recursive categories with key by category id]
+     * @param  [array]  $categories 
+     * @param  integer $parentId   
+     * @param  integer $level      
+     * @param  array   $options    
+     * @return [array]              
+     */
+    public static function recursiveCategoriesKeyId($categories, $parentId = 0, $level = 0, $options = [])
+    {
+        foreach ($categories as $key => $category) {
+            if ($category->parent_id === $parentId) {
+                // echo "1";
+                $options[$category->id]['id'] = $category->id;
+                $options[$category->id]['name'] = $category->name;
+                $options[$category->id]['parent_id'] = $category->parent_id;
+                $options[$category->id]['level'] = $level;
+                $categories->pull($key);
+                $options = static::recursiveCategoriesKeyId($categories, $category->id, $level + 1, $options);
+            }
+        }
+        return $options;
+    }
+
     /**
      * Get recursive all categories.
      */
@@ -125,4 +150,18 @@ class Category extends Model
         $options = static::getAllCategories($categories);
         return $options;
     }
+
+    /**
+     * [Create menu category on view customer]
+     * @return [array] 
+     */
+    public static function createMenuCategory() 
+    {
+        $categories = Category::orderBy('position', 'ASC')->get();
+
+        $options = static::recursiveCategoriesKeyId($categories);
+
+        return static::buildTree($options);
+    }
+
 }

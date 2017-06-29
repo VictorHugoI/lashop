@@ -3,7 +3,7 @@
 namespace App\Http\Middleware;
 
 use Closure;
-use Auth;
+use AdminAuth;
 
 class AdminRedirectIfAuthenticated
 {
@@ -16,7 +16,7 @@ class AdminRedirectIfAuthenticated
      */
     public function handle($request, Closure $next)
     {
-        if (Auth::guard('admin')->check()) {
+        if (AdminAuth::check()) {
             return redirect('/admin/home');
         }
 

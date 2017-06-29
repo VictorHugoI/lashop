@@ -16,7 +16,7 @@ class AdminRedirectIfNotAuthenticated
      */
     public function handle($request, Closure $next)
     {
-        if (!Auth::guard('admin')->check()) {
+        if (AdminAuth::check()) {
             return redirect('/admin');
         }
       

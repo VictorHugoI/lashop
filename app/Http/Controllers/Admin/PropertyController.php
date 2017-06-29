@@ -48,8 +48,10 @@ class PropertyController extends Controller
         $id = $request->catetegoryId;
 
         return response()->json([
-            'table' => view('admin.categoryProperty.component.table_property',
-                compact('properties', 'id', 'chosenProperties'))->render(),
+            'table' => view(
+                'admin.categoryProperty.component.table_property',
+                compact('properties', 'id', 'chosenProperties')
+            )->render(),
         ]);
     }
 

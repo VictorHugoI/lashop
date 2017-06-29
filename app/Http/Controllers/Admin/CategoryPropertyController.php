@@ -18,8 +18,7 @@ class CategoryPropertyController extends Controller
     public function index()
     {
         $categories = Category::getAllCategoriesOption();
-
-        return view('admin.categoryProperty.add_property_category', compact( 'categories'));
+        return view('admin.categoryProperty.add_property_category', compact('categories'));
     }
 
     /**
@@ -55,8 +54,10 @@ class CategoryPropertyController extends Controller
         $chosenProperties = Category::find($id)->categoryProperties;
 
         return response()->json([
-            'view' => view('admin.categoryProperty.component.table_property',
-                compact('properties', 'chosenProperties', 'id'))->render(),
+            'view' => view(
+                'admin.categoryProperty.component.table_property',
+                compact('properties', 'chosenProperties', 'id')
+            )->render(),
         ]);
     }
 

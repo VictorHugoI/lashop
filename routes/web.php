@@ -44,4 +44,5 @@ Route::group(['namespace' => 'Auth', 'prefix' => 'auth', 'middleware' => 'guest'
     Route::post('logout', 'LoginController@logout'); // GUEST middleware???
 });
 Route::get('/home', 'Customer\HomeController@index');
-Route::resource('carts', 'Customer\CartController');
+Route::resource('carts', 'Customer\CartController', ['except' => ['destroy']]);
+Route::post('carts/destroy', 'Customer\CartController@destroy');

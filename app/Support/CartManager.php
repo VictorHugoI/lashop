@@ -70,4 +70,13 @@ class CartManager
     {
         return self::getCart();
     }
+
+    public function count()
+    {
+        $quantity = 0;
+        foreach (self::getCart() as $key => $value) {
+            $quantity += $value['qty'];
+        }
+        return $quantity;
+    }
 }

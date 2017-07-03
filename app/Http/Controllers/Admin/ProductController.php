@@ -26,14 +26,20 @@ class ProductController extends Controller
             $products = Product::all();
 
             return view('admin.products.index', compact('products'));
-        } else {
-            $categories = Category::getChildrenByParentId($request->category);
-            $products = Product::whereIn('category_id', array_keys($categories))->get();
-
-            return response()->json([
-                'view' => view('admin.products.component.itemProduct', compact('products'))->render(),
-                ]);
         }
+
+        $categories = Category::getChildrenByParentId($request->category);
+        $productQuery = Product::whereIn('category_id', array_keys($categories));
+        if ($request->brand_id) {
+            $productQuery->where('brand_id', $request->brand_id);
+        }
+        $products = $productQuery->get();
+        $brands = $products->pluck('brand', 'brand_id')->filter()->pluck('name', 'id')->toArray();
+
+        return response()->json([
+            'view' => view('admin.products.component.itemProduct', compact('products'))->render(),
+            'select' => view('admin.products.component.selectBrand', compact('brands'))->render(),
+        ]);
     }
 
     /**
@@ -190,5 +196,21 @@ class ProductController extends Controller
             'product',
             'bottomCategories'
         ));
+    }
+
+    public function search(Request $request)
+    {
+        if ($request->product_name != '' && $request->category == 0 && $request->brand_id == 0) {
+            $productName = trim(addcslashes($request->product_name, '!, %, _'));
+
+            $products = Product::where('name', 'LIKE', '%' . $productName . '%')->take(6)->get();
+            $number = Product::where('name', 'LIKE', '%' . $productName . '%')->count();
+
+            return response()->json([
+                'view' => view('admin.products.item.searchResult', compact('products', 'number'))->render(),
+            ]);
+        } elseif ($request->product_name != '') {
+
+        }
     }
 }

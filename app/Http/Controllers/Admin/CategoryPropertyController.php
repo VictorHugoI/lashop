@@ -18,6 +18,7 @@ class CategoryPropertyController extends Controller
     public function index()
     {
         $categories = Category::getAllCategoriesOption();
+
         return view('admin.categoryProperty.add_property_category', compact('categories'));
     }
 
@@ -64,12 +65,12 @@ class CategoryPropertyController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
     {
-
+        //
     }
 
     /**
@@ -79,15 +80,23 @@ class CategoryPropertyController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update($categoryId, $propertyId)
+    public function update(Request $request)
     {
-        Category::find($categoryId)->properties()->toggle(Property::find($propertyId));
+        Category::find($request->category_id)
+            ->properties()->toggle(Property::find($request->property_id));
+
+        $cateProperty = CategoryProperty::where('category_id', $request->category_id)
+            ->where('property_id', $request->property_id)->get();
+
+        if ($cateProperty->count() != 0) {
+            $cateProperty->update(['unit' => $request->measure_unit]);
+        }
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)

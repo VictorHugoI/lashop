@@ -24,8 +24,9 @@
             loadDataTable();
         });
         $('.btnCreateProperty').on('click', function (e) {
-            $('#overlay').fadeIn(200);
-            $('.createForm').fadeToggle(300);
+            $('#overlay').show(200);
+            $('.createForm').show(300);
+            $('.modalCreateProperty').show(300);
 
             $('.inputCateId').html('<input name="catetegoryId" style="display: none" value="' + $('#categories').val() + '">');
 
@@ -44,7 +45,12 @@
                         loadDataTable();
                         changechosenBox();
                     },
-
+                    error: function (data) {
+                        $('#errname').html(data.responseJSON.name[0]);
+                        $('#errname').show(300);
+                        $('#errlabel').html(data.responseJSON.label[0]);
+                        $('#errlabel').show(300);
+                    }
                 });
             });
         });
@@ -56,11 +62,11 @@
         function changechosenBox() {
           $('.chosenBox').on('change', function (e) {
               var cbox = $(e.currentTarget);
-              var form = cbox.closest('.tableProperty');
+              var form = cbox.closest('.gradeU').find('.tableProperty');
 
               $.ajax({
                   url: form.attr('action'),
-                  type: 'GET',
+                  type: 'POST',
                   data: form.serialize(),
                   success: function(data) {
                       $('.table-responsive').html(data.view);
@@ -70,10 +76,9 @@
         };
     </script>
 @endpush
-
 @push('styles')
     {{ Html::style('assets/admin/css/plugins/dataTables/datatables.min.css') }}
-
+    {{ Html::style('assets/admin/css/style.css') }}
 @endpush
 
 @section('content')
@@ -128,11 +133,11 @@
     </div>
 
     <div id="small-chat">
-        <a class="add-property-button btnCreateProperty">
+        <a class="btn btn-primary btn-circle btn-lg btnCreateProperty">
             <i class="fa fa-plus"></i>
         </a>
     </div>
 
-    @include('admin.properties.component.modal_create_property')
+    @include('admin.categoryProperty.component.modal_create_property')
 
 @endsection

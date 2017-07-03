@@ -52,8 +52,7 @@ mix.copy('resources/assets/bower/sweetalert/dist/','public/assets/plugins/sweeta
 
 mix.copy(ADMIN_PATH + 'img', 'public/assets/img');
 mix.copy(ADMIN_PATH + 'css/patterns', 'public/assets/css/patterns');
-
-
+mix.copy(ADMIN_PATH + 'css/patterns', 'public/assets/css/patterns');
 mix.styles([
     ADMIN_PATH + 'css/bootstrap.min.css',
     ADMIN_PATH + 'font_awesome/css/font_awesome.css',

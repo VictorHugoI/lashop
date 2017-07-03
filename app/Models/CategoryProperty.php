@@ -11,5 +11,6 @@ class CategoryProperty extends Model
     protected $fillable = [
         'category_id',
         'property_id',
+        'unit',
     ];
 }

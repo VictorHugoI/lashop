@@ -15,6 +15,7 @@ class Product extends Model
         'category_id',
         'description',
         'price',
+        'image',
     ];
 
     public function category()
@@ -30,6 +31,11 @@ class Product extends Model
     public function properties()
     {
         return $this->belongsToMany(Property::class)->withPivot(['value']);
+    }
+
+    public function productProperties()
+    {
+        return $this->hasMany(ProductProperty::class);
     }
 
     public function getProperty($name)

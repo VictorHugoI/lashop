@@ -43,16 +43,18 @@ class PropertyController extends Controller
     public function store(PropertyRequest $request)
     {
         Property::create($request->all());
-        $properties = Property::all();
-        $chosenProperties = Category::find($request->catetegoryId)->categoryProperties;
-        $id = $request->catetegoryId;
+        if ($request->catetegoryId != 0) {
+            $properties = Property::all();
+            $chosenProperties = Category::find($request->catetegoryId)->categoryProperties;
+            $id = $request->catetegoryId;
 
-        return response()->json([
-            'table' => view(
-                'admin.categoryProperty.component.table_property',
-                compact('properties', 'id', 'chosenProperties')
-            )->render(),
-        ]);
+            return response()->json([
+                'table' => view(
+                    'admin.categoryProperty.component.table_property',
+                    compact('properties', 'id', 'chosenProperties')
+                )->render(),
+            ]);
+        }
     }
 
     /**

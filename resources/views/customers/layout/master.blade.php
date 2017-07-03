@@ -14,17 +14,23 @@
         <!-- Google Fonts -->
         {!! Html::style('https://fonts.googleapis.com/css?family=Roboto:400,500,700') !!}
         <link href='https://fonts.googleapis.com/css?family=Roboto:400,500,700' rel='stylesheet' type='text/css'>
+        @yield('css')
+        @stack('styles')
+        <meta name="csrf-token" content="{{ csrf_token() }}">
+        <script>
+            window.Laravel = <?php echo json_encode([
+            'csrfToken' => csrf_token(),
+            ]); ?>
+        </script>
 </head>
 <body>
-    @include('customers.sections.header')
-    @include('customers.sections.navbar')
-    @include('customers.sections.header-service')
-    <section class="main-container col1-layout home-content-container">
-        @yield('content')
-    </sectoion>
+    @include('customers.layout.sections.header')
+    @include('customers.layout.sections.navbar')
+    @include('customers.layout.sections.header-service')
+    @yield('content')
     @yield('related')
-    @include('customers.sections.footer')
-    @include('customers.sections.social')
+    @include('customers.layout.sections.footer')
+    @include('customers.layout.sections.social')
     {!! Html::script('assets/js/customer.min.js') !!}
     <script type='text/javascript'>
         jQuery(document).ready(function(){
@@ -98,5 +104,13 @@
         });
         });
     </script>
+    <script>
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+    </script>
+    @stack('scripts')
 </body>
 </html>

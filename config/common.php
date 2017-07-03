@@ -85,5 +85,10 @@ return [
             '3' => 'XL',
             '4' => 'XXL',
         ],
+        'paginate-product' => 10,
+    ],
+    
+    'path' => [
+        'product-image' => 'assets/images/products-images/',
     ],
 ];

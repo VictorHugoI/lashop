@@ -24,22 +24,25 @@ mix.copy(USER_PATH + 'products-images','public/assets/images/products-images');
 mix.copy(USER_PATH + 'fonts', 'public/assets/fonts');
 
 mix.styles([
-	USER_CSS_PATH + 'blogmate.css',
-	USER_CSS_PATH + 'bootstrap.min.css',
-	USER_CSS_PATH + 'fancybox.css',
-	USER_CSS_PATH + 'owl.carousel.css',
-	USER_CSS_PATH + 'owl.theme.css',
-	USER_CSS_PATH + 'revslider.css',
-	USER_CSS_PATH + 'font-awesome.css',
-	USER_CSS_PATH + 'style.css',
+    USER_CSS_PATH + 'blogmate.css',
+    USER_CSS_PATH + 'bootstrap.min.css',
+    USER_CSS_PATH + 'fancybox.css',
+    USER_CSS_PATH + 'owl.carousel.css',
+    USER_CSS_PATH + 'owl.theme.css',
+    USER_CSS_PATH + 'revslider.css',
+    USER_CSS_PATH + 'font-awesome.css',
+    USER_CSS_PATH + 'style.css',
 ], 'public/assets/css/customer.min.css');
 
 mix.scripts([
-	USER_JS_PATH + 'jquery.min.js',
-	USER_JS_PATH + 'bootstrap.min.js',
-	USER_JS_PATH + 'common.js',
-	USER_JS_PATH + 'revslider.js',
-	USER_JS_PATH + 'owl.carousel.min.js',
+    USER_JS_PATH + 'jquery.min.js',
+    USER_JS_PATH + 'bootstrap.min.js',
+    USER_JS_PATH + 'common.js',
+    USER_JS_PATH + 'revslider.js',
+    USER_JS_PATH + 'owl.carousel.min.js',
+    USER_JS_PATH + 'cloudzoom.js',
+    USER_JS_PATH + 'cloud-zoom.js',
+    USER_JS_PATH + 'jquery.jcarousel.min',
 ], 'public/assets/js/customer.min.js');
 
 mix.copy([

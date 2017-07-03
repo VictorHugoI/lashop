@@ -65,4 +65,9 @@ class Product extends Model
 
         return parent::getAttribute($key);
     }
+
+    public function getImageAttribute($image)
+    {
+        return config('common.path.product-image') . $image;
+    }
 }

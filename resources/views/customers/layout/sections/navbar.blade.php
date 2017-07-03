@@ -67,7 +67,7 @@
                 <!--navmenu--> 
             </div>
             <!--End mobile-menu --> 
-            <a class="logo-small" title="Magento Commerce" href="index.html"><img alt="Magento Commerce" src="images/logo-small.png"></a>
+            <a class="logo-small" title="Magento Commerce" href="index.html"><img alt="Magento Commerce" src="{{ asset('assets/images/logo-small.png') }}"></a>
             <ul id="nav" class="hidden-xs">
                 <li class="level0 parent drop-menu">
                     <a href="index.html" class="active"><span>Home</span> </a>
@@ -159,20 +159,20 @@
                                 </ul>
                                 <div class="nav-add">
                                     <div class="push_item1">
-                                        <div class="push_img"> <a href="#"> <img  alt="women jwellery" src="images/women-cate-banner.jpg"> </a> </div>
+                                        <div class="push_img"> <a href="#"> <img  alt="women jwellery" src="{{ asset('assets/images/women-cate-banner.jpg') }}"> </a> </div>
                                     </div>
                                     <div class="push_item1">
-                                        <div class="push_img"> <a href="#"> <img  alt="women_jwellery" src="images/women-cate-banner1.jpg"> </a> </div>
+                                        <div class="push_img"> <a href="#"> <img  alt="women_jwellery" src="{{ asset('assets/images/women-cate-banner1.jpg') }}"> </a> </div>
                                     </div>
                                     <div class="push_item1 push_item1_last">
-                                        <div class="push_img"> <a href="#"> <img  alt="women_bag" src="images/women-cate-banner2.jpg"> </a> </div>
+                                        <div class="push_img"> <a href="#"> <img  alt="women_bag" src="{{ asset('assets/images/women-cate-banner2.jpg') }}"> </a> </div>
                                     </div>
                                     <br class="clear">
                                 </div>
                             </div>
                             <!--nav-block nav-block-center-->
                             <div class="nav-block nav-block-right std grid12-4">
-                                <p><a href="#"><img class="fade-on-hover" src="images/nav-women-banner.jpg" alt="nav img"></a></p>
+                                <p><a href="#"><img class="fade-on-hover" src="{{ asset('assets/images/nav-women-banner.jpg') }}" alt="nav img"></a></p>
                             </div>
                             <!--nav-block nav-block-right std grid12-4--> 
                         </div>
@@ -184,7 +184,7 @@
                         <div class="level0-wrapper2">
                             <!--nav-block nav-block-center-->
                             <div class="nav-block nav-block-left std grid12-6">
-                                <p><a href="#"><img class="fade-on-hover" src="images/nav-men-banner.jpg" alt="nav img"></a></p>
+                                <p><a href="#"><img class="fade-on-hover" src="{{ asset('assets/images/nav-men-banner.jpg') }}" alt="nav img"></a></p>
                             </div>
                             <!--nav-block nav-block-right std grid12-4-->
                             <div class="nav-block nav-block-center grid12-8 itemgrid itemgrid-4col">
@@ -236,10 +236,10 @@
                                 </ul>
                                 <div class="nav-add">
                                     <div class="push_item">
-                                        <div class="push_img"> <a href="#"> <img  alt="women_jwellery" src="images/men-banner-img.jpg"> </a> </div>
+                                        <div class="push_img"> <a href="#"> <img  alt="women_jwellery" src="{{ asset('assets/images/men-banner-img.jpg') }}"> </a> </div>
                                     </div>
                                     <div class="push_item last">
-                                        <div class="push_img"> <a href="#"> <img  alt="women_jwellery" src="images/men-banner-img1.jpg"> </a> </div>
+                                        <div class="push_img"> <a href="#"> <img  alt="women_jwellery" src="{{ asset('assets/images/men-banner-img1.jpg') }}"> </a> </div>
                                     </div>
                                     <br class="clear">
                                 </div>
@@ -269,7 +269,7 @@
                                         </ul>
                                         <!--level1--> 
                                         <!--sub sub category-->
-                                        <div class="cat-img"><img src="images/e-img1.jpg" alt="Mobiles"></div>
+                                        <div class="cat-img"><img src="{{ asset('assets/images/e-img1.jpg') }}" alt="Mobiles"></div>
                                     </li>
                                     <!--level1 nav-6-1 parent item-->
                                     <li class="level1 nav-6-1 parent item">
@@ -287,7 +287,7 @@
                                         </ul>
                                         <!--level1--> 
                                         <!--sub sub category-->
-                                        <div class="cat-img"><img src="images/e-img2.jpg" alt="Mobiles Accesories"></div>
+                                        <div class="cat-img"><img src="{{ asset('assets/images/e-img2.jpg') }}" alt="Mobiles Accesories"></div>
                                     </li>
                                     <!--level1 nav-6-1 parent item-->
                                     <li class="level1 nav-6-1 parent item">
@@ -305,7 +305,7 @@
                                         </ul>
                                         <!--level1--> 
                                         <!--sub sub category-->
-                                        <div class="cat-img"><img src="images/e-img3.jpg" alt="Cameras"></div>
+                                        <div class="cat-img"><img src="{{ asset('assets/images/e-img3.jpg') }}" alt="Cameras"></div>
                                     </li>
                                     <!--level1 nav-6-1 parent item-->
                                     <li class="level1 nav-6-1 parent item">
@@ -323,7 +323,7 @@
                                         </ul>
                                         <!--level1--> 
                                         <!--sub sub category-->
-                                        <div class="cat-img"><img src="images/e-img4.jpg" alt="Audio &amp; Video"></div>
+                                        <div class="cat-img"><img src="{{ asset('assets/images/e-img4.jpg') }}" alt="Audio &amp; Video"></div>
                                     </li>
                                     <!--level1 nav-6-1 parent item-->
                                 </ul>
@@ -331,7 +331,7 @@
                             </div>
                             <!--nav-block nav-block-center-->
                             <div class="nav-block nav-block-right std grid12-4">
-                                <p><a href="#"><img class="fade-on-hover" src="images/nav-img1.jpg" alt="nav img"></a></p>
+                                <p><a href="#"><img class="fade-on-hover" src="{{ asset('assets/images/nav-img1.jpg') }}" alt="nav img"></a></p>
                                 <h3 class="heading">Responsive Magento Theme</h3>
                                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam fringilla augue nec est tristique auctor.</p>
                                 <p><a class="btn-button-st" title="Shop collection now" href="#">Shop collection now</a></p>
@@ -419,22 +419,22 @@
                     <div class="level0-wrapper custom-menu" style="left: 0px; display: none;">
                         <div class="header-nav-dropdown-wrapper clearer">
                             <div class="grid12-5">
-                                <div class="custom_img"><a href="#"><img src="images/custom-img1.jpg" alt="custom img1"></a></div>
+                                <div class="custom_img"><a href="#"><img src="{{ asset('assets/images/custom-img1.jpg') }}" alt="custom img1"></a></div>
                                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam fringilla augue.</p>
                                 <button class="learn_more_btn" title="Add to Cart" type="button"><span>Learn More</span></button>
                             </div>
                             <div class="grid12-5">
-                                <div class="custom_img"><a href="#"><img src="images/custom-img2.jpg" alt="custom img2"></a></div>
+                                <div class="custom_img"><a href="#"><img src="{{ asset('assets/images/custom-img2.jpg') }}" alt="custom img2"></a></div>
                                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam fringilla augue.</p>
                                 <button class="learn_more_btn" title="Add to Cart" type="button"><span>Learn More</span></button>
                             </div>
                             <div class="grid12-5">
-                                <div class="custom_img"><a href="#"><img src="images/custom-img3.jpg" alt="custom img3"></a></div>
+                                <div class="custom_img"><a href="#"><img src="{{ asset('assets/images/custom-img3.jpg') }}" alt="custom img3"></a></div>
                                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam fringilla augue.</p>
                                 <button class="learn_more_btn" title="Add to Cart" type="button"><span>Learn More</span></button>
                             </div>
                             <div class="grid12-5">
-                                <div class="custom_img"><a href="#"><img src="images/custom-img4.jpg" alt="custom img4"></a></div>
+                                <div class="custom_img"><a href="#"><img src="{{ asset('assets/images/custom-img4.jpg') }}" alt="custom img4"></a></div>
                                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam fringilla augue.</p>
                                 <button class="learn_more_btn" title="Add to Cart" type="button"><span>Learn More</span></button>
                             </div>

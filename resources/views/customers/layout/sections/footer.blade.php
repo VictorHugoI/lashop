@@ -38,7 +38,7 @@
             <div class="footer-logo"><a href="index.html" title="Logo"><img src="{{ asset('assets/images/footer-logo.png') }}" alt="logo"></a></div>
             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus diam arcu. </p>
             <div class="payment-accept">
-                <div><img src="{{ asset('assets/images/payment-1.png') }}" alt="payment"> <img src="{{ asset('images/payment-2.png') }}" alt="payment"> <img src="{{ asset('assets/images/payment-3.png') }}" alt="payment"> <img src="{{ asset('images/payment-4.png') }}" alt="payment"></div>
+                <div><img src="{{ asset('assets/images/payment-1.png') }}" alt="payment"> <img src="{{ asset('assets/images/payment-2.png') }}" alt="payment"> <img src="{{ asset('assets/images/payment-3.png') }}" alt="payment"> <img src="{{ asset('assets/images/payment-4.png') }}" alt="payment"></div>
             </div>
         </div>
         <div class="col-md-2 col-sm-4">

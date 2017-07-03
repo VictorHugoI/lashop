@@ -23,7 +23,7 @@ class ProductController extends Controller
     public function index(Request $request)
     {
         if ($request->category == null) {
-            $products = Product::all();
+            $products = Product::paginate(8);
 
             return view('admin.products.index', compact('products'));
         }
@@ -120,7 +120,26 @@ class ProductController extends Controller
      */
     public function show($id)
     {
-        //
+        $product = Product::find($id);
+
+        $valueProperty = ProductProperty::where('product_id', $id)->get()->pluck('value');
+        $labelProperty = ProductProperty::where('product_id', $id)->get()
+            ->pluck('property', 'property_id')->pluck('label');
+        $unitProperty = CategoryProperty::where('category_id', $product->category_id)->pluck('unit');
+
+        $details = [];
+
+        for ($i = 0; $i < $labelProperty->count(); $i++) {
+            $details[$i] = [
+                'label' => $labelProperty[$i],
+                'value' => $valueProperty[$i],
+                'unit' => $unitProperty[$i],
+            ];
+        }
+
+        return response()->json([
+            'view' => view('admin.products.component.modalDetailProduct', compact('product', 'details'))->render(),
+        ]);
     }
 
     /**
@@ -209,8 +228,6 @@ class ProductController extends Controller
             return response()->json([
                 'view' => view('admin.products.item.searchResult', compact('products', 'number'))->render(),
             ]);
-        } elseif ($request->product_name != '') {
-
         }
     }
 }

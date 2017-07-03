@@ -29,15 +29,10 @@
                 </div>
             </li>
             <li>
-                <a>
+                <a href="{{ route('product.index') }}">
                     <i class="fa fa-th-large"></i>
                     <span class="nav-label">Product Management</span>
-                    <span class="fa arrow"></span>
                 </a>
-                <ul class="nav nav-second-level">
-                    <li><a>Create new product</a></li>
-                    <li><a>Edit a product</a></li>
-                </ul>
             </li>
             <li>
                 <a>

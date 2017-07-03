@@ -26,13 +26,24 @@ Route::group(['middleware' => 'web'], function () {
         });
 
         Route::post('logout', 'Auth\LoginController@logout')->name('admin.logout');
+
         Route::resource('/property', 'PropertyController');
+
         Route::resource('/categoryProperty', 'CategoryPropertyController', ['except' => ['update']]);
-        Route::get(
-            '/categoryProperty/{categoryId}/{properId}',
-            'CategoryPropertyController@update'
-        )->name('categoryProperty.update');
+        Route::post('/categoryProperty/update', 'CategoryPropertyController@update')->name('categoryProperty.update');
+
+
         Route::resource('/categories', 'CategoriesController');
+
+        Route::get('/product/getProperty/{categoryId}', 'ProductController@getProperty')->name('product.getProperty');
+        Route::get('/product/getBottomCategory/{firstCategoryId}', 'ProductController@getBottomCategory')->name('product.getBottomCategory');
+        Route::get('/product/addProperties/{id}', 'ProductController@addProperties')->name('product.addProperties');
+        Route::post('/product/saveProperties', 'ProductController@saveProperties')->name('product.saveProperties');
+        //Route::post('/product/search', 'ProductController@search')->name('product.search');
+        Route::post('/product/search', 'ProductController@search')->name('product.search');
+        Route::resource('/product', 'ProductController');
+
+        //Route::resource('/productproperty', 'ProductPropertyController');
     });
 });
 

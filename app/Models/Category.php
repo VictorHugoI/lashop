@@ -9,8 +9,6 @@ class Category extends Model
 {
     use SoftDeletes;
 
-    protected $children = array();
-
     protected $fillable = [
         'name',
         'parent_id',
@@ -25,6 +23,11 @@ class Category extends Model
     public function categoryProperties()
     {
         return $this->hasMany(CategoryProperty::class);
+    }
+
+    public function subCategories()
+    {
+        return $this->hasMany(Category::class, 'parent_id');
     }
 
     public function properties()
@@ -46,31 +49,6 @@ class Category extends Model
                 $categories->pull($key);
 
                 $options = static::recursive($categories, $category->id, $indent, $options);
-            }
-        }
-        return $options;
-    }
-
-
-    /**
-     * [Recursive categories with key by category id]
-     * @param  [array]  $categories 
-     * @param  integer $parentId   
-     * @param  integer $level      
-     * @param  array   $options    
-     * @return [array]              
-     */
-    public static function recursiveCategoriesKeyId($categories, $parentId = 0, $level = 0, $options = [])
-    {
-        foreach ($categories as $key => $category) {
-            if ($category->parent_id === $parentId) {
-                // echo "1";
-                $options[$category->id]['id'] = $category->id;
-                $options[$category->id]['name'] = $category->name;
-                $options[$category->id]['parent_id'] = $category->parent_id;
-                $options[$category->id]['level'] = $level;
-                $categories->pull($key);
-                $options = static::recursiveCategoriesKeyId($categories, $category->id, $level + 1, $options);
             }
         }
         return $options;
@@ -151,11 +129,119 @@ class Category extends Model
         return $options;
     }
 
-    /**
-     * [Create menu category on view customer]
-     * @return [array] 
-     */
-    public static function createMenuCategory() 
+    public static function getFirstCategory($childId)
+    {
+        $parentId = self::find($childId);
+
+        if ($parentId->parent_id != 0) {
+            $parentId = static::getFirstCategory($parentId->parent_id);
+        }
+
+        return $parentId;
+    }
+
+
+    public static function recursiveCategoriesKeyId($categories, $parentId = 0, $level = 0, $options = [])
+    {
+        foreach ($categories as $key => $category) {
+            if ($category->parent_id === $parentId) {
+                // echo "1";
+                $options[$category->id]['id'] = $category->id;
+                $options[$category->id]['name'] = $category->name;
+                $options[$category->id]['parent_id'] = $category->parent_id;
+                $options[$category->id]['level'] = $level;
+                $categories->pull($key);
+                $options = static::recursiveCategoriesKeyId($categories, $category->id, $level + 1, $options);
+            }
+        }
+        return $options;
+    }
+
+
+    ///////////////////////////////// Hai hàm này lấy ra tất cả cha theo con hiện tại //////////////////////////////////
+    public static function recursiveParentCategoriesById($categories, $id, $options = [])
+    {
+        foreach ($categories as $key => $category) {
+            if ($category['id'] == $id) {
+                $options[$category['id']] = $category['name'];
+                $options = static::recursiveParentCategoriesById($categories, $category['parent_id'], $options);
+
+                unset($categories[$id]);
+            }
+        }
+        return $options;
+    }
+
+    public static function getAllParentCategoriesById($id)
+    {
+        $categories = Category::orderBy('position', 'ASC')->get();
+
+        $options = static::recursive($categories);
+
+        return static::recursiveParentCategoriesById($options, $id);
+    }
+
+    //////////////////////////////// Lấy ra tất cả con theo cha hiện tại ////////////////////////////////////////////
+    public static function recursiveChildCategoriesByParentId($categories, $currentId, $parentId = false, $options = [])
+    {
+        foreach ($categories as $category) {
+            if ((!$parentId && $category['id'] == $currentId) || $category['parent_id'] == $currentId) {
+                $options[$category['id']]['id'] = $category['id'];
+                $options[$category['id']]['name'] = $category['name'];
+                $options[$category['id']]['parent_id'] = $category['parent_id'];
+
+                unset($categories[$category['id']]);
+
+                if ($category['parent_id'] == $currentId) {
+                    $options = static::recursiveChildCategoriesByParentId($categories, $category['id'], true, $options);
+                }
+            }
+        }
+        return $options;
+    }
+
+    public static function getChildrenByParentId($parentId)
+    {
+        $categories = Category::orderBy('position', 'ASC')->get();
+
+        $options = static::recursiveCategoriesKeyId($categories);
+
+        return static::recursiveChildCategoriesByParentId($options, $parentId);
+    }
+
+    //////////////////////////////// Lấy ra tất cả con cấp thấp nhất /////////////////////////
+    public static function recursiveLastChildCategories($categories, $options = [])
+    {
+        foreach ($categories as $key => $category) {
+            if (!empty($category['children'])) {
+                $options = static::recursiveLastChildCategories($category['children'], $options);
+            } else {
+                $options[$category['id']] = $category['name'];
+            }
+        }
+        return $options;
+    }
+
+    public static function getAllLastChildCategories()
+    {
+        $categories = Category::all();
+        $options = static::recursiveCategoriesKeyId($categories);
+        $options = static::buildTree($options);
+
+        return static::recursiveLastChildCategories($options);
+    }
+
+    /////////////////////////////// Lấy ra tất cả con cấp thấp nhất tại một category hiện tại /////////////////////////
+    public static function getLastChildByParentId($parentId)
+    {
+        $options = static::getChildrenByParentId($parentId);
+
+        $options = static::buildTree($options);
+
+        return static::recursiveLastChildCategories($options);
+    }
+
+    public static function createMenuCategory()
     {
         $categories = Category::orderBy('position', 'ASC')->get();
 
@@ -163,5 +249,4 @@ class Category extends Model
 
         return static::buildTree($options);
     }
-
 }

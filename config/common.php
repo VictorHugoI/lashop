@@ -1,94 +1,100 @@
 <?php
 return [
     'unit' => [
-        '0' => 'null',
+        'non_measure' => [
+            'non_measure' => '',
+        ],
 
         'volume' => [
-            '1' => 'ml',
-            '2' => 'l',
-            '3' => 'm3',
+            'ml' => 'ml',
+            'l' => 'l',
+            'm3' => 'm3',
         ],
 
         'power' => [
-            '1' => 'W',
-            '2' => 'MW',
-            '3' => 'BTU',
+            'W' => 'W',
+            'MW' => 'MW',
+            'BTU' => 'BTU',
         ],
 
         'length' => [
-            '1' => 'mm',
-            '2' => 'cm',
-            '3' => 'inches',
-            '4' => 'm',
-        ],
-
-        'color' => [
-            '1' => 'Red',
-            '2' => 'Yellow',
-            '3' => 'Pink',
-            '4' => 'Blue',
+            'mm' => 'mm',
+            'cm' => 'cm',
+            'inches' => 'inches',
+            'm' => 'm',
         ],
 
         'area' => [
-            '1' => 'cm2',
-            '2' => 'm2',
+            'cm2' => 'cm2',
+            'm2' => 'm2',
         ],
 
         'storage' => [
-            '1' => 'bit',
-            '2' => 'Bytes',
-            '3' => 'Mb',
-            '4' => 'Gb',
-            '5' => 'Tb',
+            'bit' => 'bit',
+            'bytes' => 'bytes',
+            'Mb' => 'Mb',
+            'Gb' => 'Gb',
+            'Tb' => 'Tb',
         ],
 
         'frequency' => [
-            '1' => 'Hz',
-            '2' => 'Mhz',
-            '3' => 'GHz',
+            'Hz' => 'Hz',
+            'Mhz' => 'Mhz',
+            'GHz' => 'GHz',
         ],
 
         'time' => [
-            '1' => 'ms',
-            '2' => 's',
-            '3' => 'min',
-            '4' => 'h',
+            'ms' => 'ms',
+            's' => 's',
+            'min' => 'min',
+            'h' => 'h',
         ],
 
         'voltage' => [
-            '1' => 'mV',
-            '2' => 'V',
-            '3' => 'KV',
+            'mV' => 'mV',
+            'V' => 'V',
+            'KV' => 'KV',
         ],
 
         'intensity' => [
-            '1' => 'mA',
-            '2' => 'A',
-        ],
-
-        'material' => [
-            '1' => 'steel',
-            '2' => 'alum',
-            '3' => 'poly nilon',
-            '4' => 'lather',
+            'mA' => 'mA',
+            'A' => 'A',
         ],
 
         'resolution' => [
-            '1' => 'px',
-            '2' => 'ppx',
-            '3' => 'dpi',
+            'px' => 'px',
+            'ppx' => 'ppx',
+            'dpi' => 'dpi',
         ],
 
-        'size' => [
-            '1' => 'S',
-            '2' => 'M',
-            '3' => 'XL',
-            '4' => 'XXL',
+        'weight' => [
+            'kg' => 'kg',
+            'ton' => 'ton',
         ],
         'paginate-product' => 10,
     ],
     
     'path' => [
         'product-image' => 'assets/images/products-images/',
+    ],
+
+    'measure' => [
+        'non_measure' => 'Non measure',
+        'volume' => 'volume',
+        'power' => 'power',
+        'length' => 'length',
+        'area' => 'area',
+        'storage' => 'storage',
+        'frequency' => 'frequency',
+        'resolution' => 'resolution',
+        'weight' => 'weight',
+        'voltage' => 'voltage',
+        'intensity' => 'intensity',
+        'time' => 'time',
+    ],
+
+    'data_type' => [
+        '1' => 'int',
+        '2' => 'string',
     ],
 ];

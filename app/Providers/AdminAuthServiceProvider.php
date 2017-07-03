@@ -2,12 +2,9 @@
 namespace App\Providers;
 
 use App\Support\AdminAuthManager;
-use Illuminate\Support\Facades\Gate;
-use Illuminate\Auth\AuthServiceProvider as AuthServiceProvider;
-use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
-use App\Models\Admin;
+use Illuminate\Auth\AuthServiceProvider as UserAuthServiceProvider;
 
-class AdminAuthServiceProvider extends AuthServiceProvider
+class AdminAuthServiceProvider extends UserAuthServiceProvider
 {
     protected function registerAuthenticator()
     {

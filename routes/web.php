@@ -12,8 +12,8 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
-})->name('home')->middleware('auth');
+    return view('customers.master');
+})->name('home');
 
 Route::group(['middleware' => 'web'], function () {
     Route::group(['namespace' => 'Admin', 'prefix' => 'admin' ], function () {

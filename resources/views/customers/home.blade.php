@@ -2,6 +2,13 @@
 @section('title')
 <title>Home</title>
 @endsection
+
+@push('scripts')
+    {!! Html::script('assets/plugins/sweetalert/sweetalert.min.js') !!}
+@endpush
+@push('styles')
+    {!! Html::style('assets/plugins/sweetalert/sweetalert.css') !!}
+@endpush
 @section('content')
 @include('customers.layout.sections.slideshow')
 <div class="offer-banner-section">
@@ -38,3 +45,23 @@
 
 <!-- End Featured Slider --> 
 @endsection
+@push('scripts')
+    <script type="text/javascript">
+        $('.form-add').submit(function (e){
+            e.preventDefault();
+            console.log($(this).attr('action'));
+            $.ajax({
+                url : $(this).attr('action'),
+                data : $(this).serialize(),
+                type : "POST",
+                success : function(data){
+                    console.log(data);
+                    $('#cart-sidebar').html(data.cartContent);
+                    $('#cart-total').html(data.total);
+                    $('.top-subtotal .price').html('$' + data.subTotal)  
+                }
+            });
+        });
+    </script>
+@endpush
+

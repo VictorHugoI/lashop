@@ -32,8 +32,9 @@
                 </div>
                             <!--info-inner-->
                 <div class="actions">
-                    {!! Form::open(['action' => 'Customer\CartController@store'])!!}
-                    {!! Form::hidden('productId', $product->id) !!}
+
+                    {!! Form::open(['action' => 'Customer\CartController@store', 'class' => 'form-add'])!!}
+                        {!! Form::hidden('productId', $product->id) !!}
                     <button type="submit" title="Add to Cart" class="button btn-cart"><span>Add to Cart</span></button>
                     {!! Form::close()!!}
                 </div>

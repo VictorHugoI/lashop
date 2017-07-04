@@ -14,6 +14,8 @@
         <!-- Google Fonts -->
         {!! Html::style('https://fonts.googleapis.com/css?family=Roboto:400,500,700') !!}
         <link href='https://fonts.googleapis.com/css?family=Roboto:400,500,700' rel='stylesheet' type='text/css'>
+        {!! Html::script('assets/sweetalert/sweetalert.min.js') !!}
+        {!! Html::style('assets/sweetalert/sweetalert.css') !!}
         @yield('css')
         @stack('styles')
         <meta name="csrf-token" content="{{ csrf_token() }}">

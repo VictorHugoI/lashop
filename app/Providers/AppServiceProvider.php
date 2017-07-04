@@ -34,9 +34,6 @@ class AppServiceProvider extends ServiceProvider
 
         $dataType = config('common.data_type');
         View::share('dataType', $dataType);
-
-        $categoriesMenu = Category::createMenuCategory();
-        View::share('categoriesMenu', $categoriesMenu);
     }
 
     /**

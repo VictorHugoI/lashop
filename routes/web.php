@@ -39,6 +39,8 @@ Route::group(['middleware' => 'web'], function () {
         Route::get('/product/getBottomCategory/{firstCategoryId}', 'ProductController@getBottomCategory')->name('product.getBottomCategory');
         Route::get('/product/addProperties/{id}', 'ProductController@addProperties')->name('product.addProperties');
         Route::post('/product/saveProperties', 'ProductController@saveProperties')->name('product.saveProperties');
+        //Route::post('/product/search', 'ProductController@search')->name('product.search');
+        Route::post('/product/search', 'ProductController@search')->name('product.search');
         Route::resource('/product', 'ProductController');
 
         //Route::resource('/productproperty', 'ProductPropertyController');

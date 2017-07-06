@@ -35,6 +35,7 @@ Route::group(['middleware' => 'web'], function () {
 
         Route::resource('/categories', 'CategoriesController');
 
+
         Route::get('/product/getProperty/{categoryId}', 'ProductController@getProperty')->name('product.getProperty');
         Route::get('/product/getBottomCategory/{firstCategoryId}', 'ProductController@getBottomCategory')->name('product.getBottomCategory');
         Route::get('/product/addProperties/{id}', 'ProductController@addProperties')->name('product.addProperties');
@@ -44,6 +45,9 @@ Route::group(['middleware' => 'web'], function () {
         Route::resource('/product', 'ProductController');
 
         //Route::resource('/productproperty', 'ProductPropertyController');
+
+        //setting system
+        Route::resource('/setting', 'SettingController');
     });
 });
 
@@ -54,6 +58,10 @@ Route::group(['namespace' => 'Auth', 'prefix' => 'auth', 'middleware' => 'guest'
     Route::post('register', 'RegisterController@register');
     Route::post('logout', 'LoginController@logout'); // GUEST middleware???
 });
+
 Route::get('/home', 'Customer\HomeController@index');
 Route::resource('carts', 'Customer\CartController', ['except' => ['destroy']]);
 Route::post('carts/destroy', 'Customer\CartController@destroy');
+//Route::get('/home', 'Customer\HomeController@index');
+//Route::resource('carts', 'Customer\CartController');
+

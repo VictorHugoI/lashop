@@ -12,8 +12,8 @@ package-lock.json
 .env
 
 composer.lock
-.phpstorm.meta.php
-_ide_helper.php
+#.phpstorm.meta.php
+#_ide_helper.php
 /public/mix-manifest.json
 /public/assets/
-resources/assets/bower
+/resources/assets/bower

@@ -20,9 +20,10 @@ Route::group(['middleware' => 'web'], function () {
         Route::get('home', 'HomeController@index');
 
         Route::group(['middleware' => 'admin.guest'], function () {
-            Route::get('/', 'Auth\LoginController@showLoginForm');
+            Route::get('/', 'Auth\LoginController@login');
             Route::get('login', 'Auth\LoginController@showLoginForm');
             Route::post('login', 'Auth\LoginController@login')->name('admin.login');
+            // Route::post('logout', 'Auth\LoginController@logout')->name('admin.logout');
         });
 
         Route::post('logout', 'Auth\LoginController@logout')->name('admin.logout');
@@ -46,6 +47,7 @@ Route::group(['middleware' => 'web'], function () {
     });
 });
 Route::post('logout', 'Auth\LoginController@logout')->name('logout'); // GUEST middleware???
+
 Route::group(['namespace' => 'Auth', 'prefix' => '', 'middleware' => 'guest'], function () {
     Route::get('login', 'LoginController@showLoginForm')->name('login');
     Route::post('login', 'LoginController@login')->name('login');
@@ -54,11 +56,14 @@ Route::group(['namespace' => 'Auth', 'prefix' => '', 'middleware' => 'guest'], f
 });
 
 Route::group(['namespace' => 'Customer', 'prefix' => '' ], function () {
-    Route::get('/', 'HomeController@index')->name('home');
+    Route::resource('comments', 'CommentsController');
     Route::get('/{id}', 'HomeController@show');
+    Route::get('/', 'HomeController@index')->name('home');
+    // 
     Route::get('/category/{id}', 'CategoryController@show')->name('category.show');
     Route::resource('billing', 'BillingController', ['only' => ['store']]);
     Route::resource('carts', 'CartController', ['except' => ['destroy', 'show']]);
     Route::post('carts/destroy', 'CartController@destroy');
     Route::post('carts/update-cart', 'CartController@updateCart');
+    Route::resource('products', 'ProductsController');
 });

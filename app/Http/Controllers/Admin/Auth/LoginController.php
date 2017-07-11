@@ -21,10 +21,11 @@ class LoginController extends Controller
 
     public function logout(Request $request)
     {
+        // dd($request);
         $this->guard()->logout();
-        $request->session()->flush();
+        // $request->session()->flush();
         $request->session()->regenerate();
-        return redirect()->route('welcome');
+        return redirect()->route('admin.login');
     }
 
     protected function guard()

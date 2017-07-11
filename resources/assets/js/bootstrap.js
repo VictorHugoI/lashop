@@ -13,6 +13,7 @@ window._ = require('lodash');
 //     require('bootstrap-sass');
 // } catch (e) {}
 
+
 /**
  * We'll load the axios HTTP library which allows us to easily issue requests
  * to our Laravel back-end. This library automatically handles sending the
@@ -49,7 +50,7 @@ window.Pusher = require('pusher-js');
 
 window.Echo = new Echo({
     broadcaster: 'pusher',
-    key: '8ec80ce9be26343f28eb',
+    key: $('meta[name="PUSHER-APP-KEY"]').attr('content'),
     cluster : "ap1",
     encrypted : true
 });

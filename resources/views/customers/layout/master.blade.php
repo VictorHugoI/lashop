@@ -25,12 +25,12 @@
         @yield('css')
         @stack('styles')
         <meta name="csrf-token" content="{{ csrf_token() }}">
+        <meta name="PUSHER-APP-KEY" content="{{ env('PUSHER_APP_KEY') }}">
         <script>
             window.Laravel = <?php echo json_encode([
             'csrfToken' => csrf_token(),
             ]); ?>
         </script>
-
 </head>
 <body id="body">
 <div style="background-color: rgb(119, 119, 119); opacity: 0.7; cursor: pointer; height: 100%; display: none; padding: 0; position: fixed;" id="fancybox-overlay"></div>
@@ -127,8 +127,8 @@
             }
         });
     </script>
-    @stack('scripts')
     {!! Html::script('assets/js/app.js') !!}
+    @stack('scripts')
 
 </body>
 </html>

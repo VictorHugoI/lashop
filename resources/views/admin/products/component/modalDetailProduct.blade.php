@@ -1,4 +1,4 @@
-<div class="modal-content animated flipInY">
+<div class="modal-content">
     <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
         <h4 class="modal-title">{{ $product->name }}</h4>
@@ -29,12 +29,15 @@
                         </tr>
                         </thead>
                         <tbody>
-                        @foreach($details as $detail)
+                        @foreach($product->properties as $property)
                             <tr>
-                                <td>{{ $detail['label'] }}</td>
-                                <td>{{ $detail['value'] }}</td>
-                                @if($detail['unit'] != 'non_measure')
-                                    <td>{{ $detail['unit'] }}</td>
+                                <td>{{ $property->label }}</td>
+                                @php
+                                $name = 'prop_'.$property->name;
+                                @endphp
+                                <td>{{ $product->$name }}</td>
+                                @if($product->getPropertyUnit($property->id) != 'non_measure')
+                                    <td>{{ $product->getPropertyUnit($property->id) }}</td>
                                 @endif
                                 <td></td>
                             </tr>

@@ -47,14 +47,13 @@ class Product extends Model
 
     public function getPropertyValue($name)
     {
-        // return $this->getProperty($name)->pivot->value;
+        return $this->getProperty($name)->pivot->value;
         // TODO check exist property before get value
     }
 
     public function getPropertyUnit($name)
     {
-        // return $this->getProperty($name)->pivot->unit;
-        // TODO: get unit from category_property => config
+        return $this->getUnit($name)->unit;
     }
 
     public function getAttribute($key)
@@ -74,6 +73,13 @@ class Product extends Model
 
     public function getImageAttribute($image)
     {
-        return config('common.path.product-image') . $image;
+        return url('assets/images/products-images') . '/' . $image;
+    }
+
+    public function getUnit($name)
+    {
+        return $this->category->categoryProperties->first(function ($unit) use ($name) {
+            return $unit->property_id === $name;
+        });
     }
 }

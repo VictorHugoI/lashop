@@ -122,23 +122,8 @@ class ProductController extends Controller
     {
         $product = Product::find($id);
 
-        $valueProperty = ProductProperty::where('product_id', $id)->get()->pluck('value');
-        $labelProperty = ProductProperty::where('product_id', $id)->get()
-            ->pluck('property', 'property_id')->pluck('label');
-        $unitProperty = CategoryProperty::where('category_id', $product->category_id)->pluck('unit');
-
-        $details = [];
-
-        for ($i = 0; $i < $labelProperty->count(); $i++) {
-            $details[$i] = [
-                'label' => $labelProperty[$i],
-                'value' => $valueProperty[$i],
-                'unit' => $unitProperty[$i],
-            ];
-        }
-
         return response()->json([
-            'view' => view('admin.products.component.modalDetailProduct', compact('product', 'details'))->render(),
+            'view' => view('admin.products.component.modalDetailProduct', compact('product'))->render(),
         ]);
     }
 

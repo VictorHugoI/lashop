@@ -46,13 +46,24 @@ Route::group(['middleware' => 'web'], function () {
     });
 });
 
-Route::group(['namespace' => 'Auth', 'prefix' => 'auth', 'middleware' => 'guest'], function () {
-    Route::get('login', 'LoginController@showLoginForm');
-    Route::post('login', 'LoginController@login');
-    Route::get('register', 'RegisterController@showRegistrationForm');
-    Route::post('register', 'RegisterController@register');
-    Route::post('logout', 'LoginController@logout'); // GUEST middleware???
+Route::post('logout', 'Auth\LoginController@logout')->name('logout'); // GUEST middleware???
+Route::group(['namespace' => 'Auth', 'prefix' => '', 'middleware' => 'guest'], function () {
+    Route::get('login', 'LoginController@showLoginForm')->name('login');
+    Route::post('login', 'LoginController@login')->name('login');
+    Route::get('register', 'RegisterController@showRegistrationForm')->name('register');
+    Route::post('register', 'RegisterController@register')->name('register');
 });
-Route::get('/home', 'Customer\HomeController@index');
-Route::resource('carts', 'Customer\CartController', ['except' => ['destroy']]);
-Route::post('carts/destroy', 'Customer\CartController@destroy');
+
+Route::group(['namespace' => 'Customer', 'prefix' => '' ], function () {
+    Route::get('/', 'HomeController@index')->name('home');
+    Route::get('/{id}', 'HomeController@show');
+    Route::get('/category/{id}', 'CategoryController@show')->name('category.show');
+    Route::resource('billing', 'BillingController', ['only' => ['store']]);
+    Route::resource('carts', 'CartController', ['except' => ['destroy', 'show']]);
+    Route::post('carts/destroy', 'CartController@destroy');
+    Route::post('carts/update-cart', 'CartController@updateCart');
+    Route::resource('products', 'ProductsController');
+    Route::resource('comments', 'CommentsController');
+});
+
+

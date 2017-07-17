@@ -5,6 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="description" content="">
         <meta name="author" content="">
+        <meta name="base-url" content="{{ url('/') }}">
         @yield('title')
         <!-- Favicons Icon -->
         {!! Html::favicon('http://demo.magikthemes.com/skin/frontend/base/default/favicon.ico') !!}
@@ -14,8 +15,13 @@
         <!-- Google Fonts -->
         {!! Html::style('https://fonts.googleapis.com/css?family=Roboto:400,500,700') !!}
         <link href='https://fonts.googleapis.com/css?family=Roboto:400,500,700' rel='stylesheet' type='text/css'>
-        {!! Html::script('assets/sweetalert/sweetalert.min.js') !!}
-        {!! Html::style('assets/sweetalert/sweetalert.css') !!}
+        {!! Html::script('assets/plugins/sweetalert/sweetalert.min.js') !!}
+        {!! Html::style('assets/plugins/sweetalert/sweetalert.css') !!}
+
+
+
+    {!! Html::script('assets/js/jquery.min.js') !!}
+    {!! Html::script('https://cdnjs.cloudflare.com/ajax/libs/jquery.pjax/2.0.1/jquery.pjax.js') !!}
         @yield('css')
         @stack('styles')
         <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -24,11 +30,19 @@
             'csrfToken' => csrf_token(),
             ]); ?>
         </script>
+
 </head>
-<body>
+<body id="body">
+<div style="background-color: rgb(119, 119, 119); opacity: 0.7; cursor: pointer; height: 100%; display: none; padding: 0; position: fixed;" id="fancybox-overlay"></div>
+<div style="width: 1190px; height: auto; top: 20%; left: 25%; display: none; position: fixed;" id="fancybox-wrap">
+    <div id="fancybox-outer">
+        <div style="border-width: 10px; width: 1170px; height: auto;" id="fancybox-content">
+
+        </div>
+        <a style="display: inline;" id="fancybox-close"></a> </div>
+</div>
     @include('customers.layout.sections.header')
-    @include('customers.layout.sections.navbar')
-    @include('customers.layout.sections.header-service')
+    @stack('nav')
     @yield('content')
     @yield('related')
     @include('customers.layout.sections.footer')
@@ -114,5 +128,7 @@
         });
     </script>
     @stack('scripts')
+    {!! Html::script('assets/js/app.js') !!}
+
 </body>
 </html>

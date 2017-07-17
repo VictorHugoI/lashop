@@ -1,6 +1,6 @@
 @extends('admin.layout.master')
 @push('scripts')
-{{ Html::script('assets/admin/js/plugins/select2/select2.full.min.js') }}
+    {{ Html::script('assets/admin/js/plugins/select2/select2.full.min.js') }}
 <script>
     $(".selectCategory").select2();
     $('.brands').select2();
@@ -19,57 +19,6 @@
                 searchProduct();
             },
         });
-    });
-
-    var timeout = null;
-    $('#product_name').keyup(function (e) {
-        e.preventDefault();
-        clearTimeout(timeout);
-        var form = $(this).closest('.searchForm');
-        var url = $(this).data('url');
-        timeout = setTimeout(function () {
-            $.ajax({
-                url: form.attr('action'),
-                type: 'POST',
-                data: form.serialize(),
-                success: function (data) {
-                    if (data.length != 0) {
-                        $('.searchItem').html(data.view);
-                        $('.searchItem').slideDown(200);
-                    } else {
-                        $('.searchItem').hide(300);
-                        $('.searchItem').html('');
-                    }
-                },
-            });
-        }, 300);
-    });
-    $('#product_name').focusout(function (e) {
-        $('.searchItem').hide(300);
-        $('.searchItem').html('');
-    });
-    function loadSelect2() {
-        $('.brands').select2();
-    }
-    function searchProduct() {
-            $('.selectBrand').on('change', function (e) {
-            console.log(11);
-            var btn = $(e.currentTarget);
-            var form = btn.closest('.selectCategoryForm');
-
-            $.ajax({
-                url: form.attr('action'),
-                type: 'GET',
-                data: form.serialize(),
-                success: function (data) {
-                    $('.listProduct').html(data.view);
-                },
-            });
-        });
-    }
-    $(document).ready(function() {
-        searchProduct();
-        loadSelect2();
     });
 </script>
 @endpush
@@ -124,7 +73,6 @@
 
                         {!! Form::select('category', ['0' => ' All product... '] + $categories, null,
                              ['class' => 'form-control selectCategory', 'id' => 'category']) !!}
-
                     </div>
                 </div>
                 <div class="col-sm-3 selectBrandForm">
@@ -145,23 +93,26 @@
                     <div class="ibox">
                         <div class="ibox-content product-box">
                             <div class="product-imitation">
-
                                 <img src="{{ url('assets/images/products-images/product6.jpg') }}"
                                      style="width: 287px; height: 200px">
-
                             </div>
                             <div class="product-desc">
                                 <span class="product-price">
                                     ${{ $product->price }}
                                 </span>
-                                <small class="text-muted">Category</small>
+                                <small class="text-muted">Category: {{ $product->category->name }}</small> <br>
+                                <small class="text-muted">Brand: {{ $product->brand['name'] }}</small>
                                 <a class="product-name"> {{ $product->name }}</a>
                                 <div class="m-t text-righ">
                                     @if($product->productProperties->count())
-                                        <a class="btn btn-xs btn-outline btn-primary">Info <i
-                                                    class="fa fa-long-arrow-right"></i> </a>
+                                        <a class="btn btn-xs btn-outline btn-primary btnInfo" data-toggle="modal"
+                                           data-target="#myModal2"
+                                           data-url="{{ route('product.show', $product->id) }}" >Info
+                                            <i class="fa fa-long-arrow-right"></i>
+                                        </a>
                                     @else
-                                        <a class="btn btn-xs btn-outline btn-danger">None property </a>
+                                        <a class="btn btn-xs btn-outline btn-danger"
+                                           href="{{ route('product.addProperties', $product->id) }}">None property </a>
                                     @endif
                                 </div>
                             </div>
@@ -172,12 +123,22 @@
             @endforeach
         </div>
     </div>
+
+    <div class="row wrapper border-bottom white-bg page-heading" style="text-align: center; padding: 0px">
+        {{ $products->links() }}
+    </div>
     <div id="small-chat">
         <li class="btnRotate">
             <a href="{{ route('product.create') }}" class="round green" style="color: white; font-weight: bold;">+
                 <span class="round">Create new product.</span>
             </a>
         </li>
+    </div>
+
+    <div class="modal inmodal" id="myModal2" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modalDetailProduct" style="margin: 50px auto; width: 800px">
+
+        </div>
     </div>
 @endsection
 

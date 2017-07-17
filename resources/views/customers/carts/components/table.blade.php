@@ -70,4 +70,4 @@
         @endforeach
     </tbody>
 </table>
-
+{{ Form::close() }}

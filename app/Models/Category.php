@@ -145,7 +145,6 @@ class Category extends Model
     {
         foreach ($categories as $key => $category) {
             if ($category->parent_id === $parentId) {
-                // echo "1";
                 $options[$category->id]['id'] = $category->id;
                 $options[$category->id]['name'] = $category->name;
                 $options[$category->id]['parent_id'] = $category->parent_id;
@@ -176,7 +175,7 @@ class Category extends Model
     {
         $categories = Category::orderBy('position', 'ASC')->get();
 
-        $options = static::recursive($categories);
+        $options = static::recursiveCategoriesKeyId($categories);
 
         return static::recursiveParentCategoriesById($options, $id);
     }
@@ -236,7 +235,7 @@ class Category extends Model
     {
         $options = static::getChildrenByParentId($parentId);
 
-        $options = static::buildTree($options);
+        $options = static::buildTree($options, $parentId);
 
         return static::recursiveLastChildCategories($options);
     }

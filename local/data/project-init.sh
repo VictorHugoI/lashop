@@ -6,5 +6,5 @@ BASE_DIR="/vagrant"
 echo "Hello, Provision is starting...."
 
 
-mysql -u root < /vagrant/data/db.sql
+# mysql -u root < /vagrant/data/db.sql
 

@@ -1,0 +1,5 @@
+{
+    "require": {
+        "jacobbennett/pjax": "^1.0"
+    }
+}

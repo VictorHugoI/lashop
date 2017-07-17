@@ -96,8 +96,8 @@ function gridsterUpdate() {
 }
 
 function pluginMediaQueries(reset, options) {
-    if (window.innerWidth >= 1588) { updateWindow(reset, 3, 535, 1588, 1588, options); }
-    else if (window.innerWidth >= 1000) { updateWindow(reset, 2, 535, 1000, 1000, options); }
+    if (window.innerWidth >= 3000) { updateWindow(reset, 3, 535, 3000, 3000, options); }
+    else if (window.innerWidth >= 2000) { updateWindow(reset, 2, 535, 2000, 2000, options); }
     else if (window.innerWidth >= 650) { updateWindow(reset, 1, 535, 514, 650, options); }
     else if (window.innerWidth >= 515) { updateWindow(reset, 1, 535, 514, 515, options); }
     else { updateWindow(reset, 1, 320, 320, 320, options); }

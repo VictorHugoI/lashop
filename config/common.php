@@ -97,4 +97,5 @@ return [
         '1' => 'int',
         '2' => 'string',
     ],
+    'mail' => 'lashop1221@gmail.com',
 ];

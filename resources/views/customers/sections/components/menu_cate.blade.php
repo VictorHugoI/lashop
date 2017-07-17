@@ -1,7 +1,8 @@
 @foreach ($categories as $category)
     @if ($category['level'] == 0)
+        {{ ($category['id'] == $id) }}
         <li class="level0 nav-5 level-top first">
-            <a href="{{ route('category.show', $category['id']) }}" class="level-top ">
+            <a href="{{ route('category.show', $category['id']) }}" class="level-top {{ ($category['id'] == $id || array_key_exists($category['id'], $cates)) ? 'active' : ''}}">
                 <span>{{ $category['name'] }}</span> </a>
             <div class="level0-wrapper dropdown-6col" style="display:none;">
                 <div class="level0-wrapper2">
@@ -15,8 +16,8 @@
                                         @endif
                                         @if ($category['level'] == 2)
                                             <li class="level2 nav-6-1-1"><a
-                                                href="{{ route('category.show', $category['id']) }}">
-                                                <span>{{ $category['name'] }}</span>
+                                                        href="{{ route('category.show', $category['id']) }}">
+                                                    <span>{{ $category['name'] }}</span>
                                                 </a>
                                             </li>
                                         @endif
@@ -29,15 +30,15 @@
                                     </ul>
                                 </li>
                             @endif
-                        @if ($category['level'] == 0)
+                            @if ($category['level'] == 0)
                         </ul>
                         <div class="nav-add">
                             @for($i=1; $i<= 3; $i++)
-                            <div class="push_item1">
-                                <div class="push_img"><a href="#">
-                                        <img alt="women jwellery" src="{{ url('assets/images/category-images') . '/' . $category['id'] . $i . '.jpg'}}"> </a>
+                                <div class="push_item1">
+                                    <div class="push_img"><a href="#">
+                                            <img alt="women jwellery" src="{{ url('assets/images/category-images') . '/' . $category['id'] . $i . '.jpg'}}"> </a>
+                                    </div>
                                 </div>
-                            </div>
                             @endfor
                             <br class="clear">
                         </div>

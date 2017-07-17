@@ -23,7 +23,7 @@ class ProductController extends Controller
     public function index(Request $request)
     {
         if ($request->category == null) {
-            $products = Product::all();
+            $products = Product::paginate(8);
 
             return view('admin.products.index', compact('products'));
         }
@@ -120,7 +120,11 @@ class ProductController extends Controller
      */
     public function show($id)
     {
-        //
+        $product = Product::find($id);
+
+        return response()->json([
+            'view' => view('admin.products.component.modalDetailProduct', compact('product'))->render(),
+        ]);
     }
 
     /**
@@ -209,8 +213,6 @@ class ProductController extends Controller
             return response()->json([
                 'view' => view('admin.products.item.searchResult', compact('products', 'number'))->render(),
             ]);
-        } elseif ($request->product_name != '') {
-
         }
     }
 }

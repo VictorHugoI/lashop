@@ -18,7 +18,7 @@ const USER_CSS_PATH = USER_PATH + 'css/';
  */
 
 mix.js('resources/assets/js/app.js', 'public/assets/js')
-   .sass('resources/assets/sass/app.scss', 'public/assets/css');
+    .sass('resources/assets/sass/app.scss', 'public/assets/css');
 mix.copy(USER_PATH + 'images', 'public/assets/images');
 mix.copy(USER_PATH + 'products-images','public/assets/images/products-images');
 mix.copy(USER_PATH + 'fonts', 'public/assets/fonts');
@@ -49,6 +49,7 @@ mix.copy([
     ADMIN_PATH + 'font_awesome/fonts',
 ], 'public/assets/fonts');
 mix.copy('resources/assets/bower/sweetalert/dist/','public/assets/plugins/sweetalert/');
+mix.copy('resources/assets/bower/toastr/','public/assets/plugins/toastr/');
 
 mix.copy(ADMIN_PATH + 'img', 'public/assets/img');
 mix.copy(ADMIN_PATH + 'css/patterns', 'public/assets/css/patterns');

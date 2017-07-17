@@ -35,6 +35,7 @@ Route::group(['middleware' => 'web'], function () {
 
         Route::resource('/categories', 'CategoriesController');
 
+
         Route::get('/product/getProperty/{categoryId}', 'ProductController@getProperty')->name('product.getProperty');
         Route::get('/product/getBottomCategory/{firstCategoryId}', 'ProductController@getBottomCategory')->name('product.getBottomCategory');
         Route::get('/product/addProperties/{id}', 'ProductController@addProperties')->name('product.addProperties');
@@ -43,6 +44,9 @@ Route::group(['middleware' => 'web'], function () {
         Route::resource('/product', 'ProductController');
 
         //Route::resource('/productproperty', 'ProductPropertyController');
+
+        //setting system
+        Route::resource('/setting', 'SettingController');
     });
 });
 
@@ -65,5 +69,4 @@ Route::group(['namespace' => 'Customer', 'prefix' => '' ], function () {
     Route::resource('products', 'ProductsController');
     Route::resource('comments', 'CommentsController');
 });
-
 

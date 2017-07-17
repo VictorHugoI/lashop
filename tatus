@@ -1,0 +1,22 @@
+[33m8979f50[m make system setting
+[33m6789f97[m Merge pull request #28 from tna-tuanhv/feature/update_config_env
+[33m7073a02[m Update env config
+[33m4156c22[m Merge pull request #27 from tna-tuanhv/feature/update_auth_service_provider_name
+[33m8b689a9[m Alias name from AuthServiceProvider to UserAuthServiceProvider
+[33mf9c561a[m Merge pull request #22 from khuatNhung/customer_category
+[33m3c649e3[m Customer menu category
+[33ma4a0fe2[m Merge pull request #21 from SangTranHuu/home
+[33m8dd8cc3[m Cart
+[33m77be706[m Merge pull request #20 from SangTranHuu/CartHelper
+[33m6b9d0e4[m Merge pull request #15 from HoangTien339/add_admin_auth_facade
+[33m11c2695[m Task 002: Add AdminAuth Facade
+[33me3d6259[m Cart
+[33mb7fbdb1[m Merge pull request #19 from LaPhuongDuy/add_property_to_category
+[33m99e8072[m add_property_to_category
+[33mf99112f[m Merge pull request #17 from khuatNhung/crud_category
+[33m349ad13[m Crud_category
+[33m0e57a49[m Merge pull request #16 from khuatNhung/Plugin_crud_category
+[33ma141c2b[m Plugin for crud category
+[33ma28a61d[m Merge pull request #14 from LaPhuongDuy/crud_property_new
+[33m7f00ea3[m Merge branch 'master' into crud_property_new
+[33m2b250f9[m Update create.blade.php

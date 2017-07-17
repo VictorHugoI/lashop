@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Foundation\Inspiring;
-
+use App\Console\Commands\SettingCommand;
 /*
 |--------------------------------------------------------------------------
 | Console Routes
@@ -16,3 +16,6 @@ use Illuminate\Foundation\Inspiring;
 Artisan::command('inspire', function () {
     $this->comment(Inspiring::quote());
 })->describe('Display an inspiring quote');
+
+Artisan::registerCommand(new SettingCommand());
+

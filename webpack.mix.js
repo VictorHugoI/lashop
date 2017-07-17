@@ -2,6 +2,7 @@ const { mix } = require('laravel-mix');
 
 const ADMIN_PATH = 'resources/assets/template/admin/';
 const ADMIN_JS_CATEGORY_PATH = 'resources/assets/admin/category/';
+/*const ADMIN_JS_SETTING_PATH = 'resources/assets/admin/setting/';*/
 
 const USER_PATH = 'resources/assets/template/customer/';
 const USER_JS_PATH = USER_PATH + 'js/';
@@ -22,6 +23,7 @@ mix.js('resources/assets/js/app.js', 'public/assets/js')
 mix.copy(USER_PATH + 'images', 'public/assets/images');
 mix.copy(USER_PATH + 'products-images','public/assets/images/products-images');
 mix.copy(USER_PATH + 'fonts', 'public/assets/fonts');
+/*mix.js(ADMIN_JS_SETTING_PATH + 'setting.js', 'public/assets/js/setting.js');*/
 
 mix.styles([
     USER_CSS_PATH + 'blogmate.css',

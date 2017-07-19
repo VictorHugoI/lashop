@@ -2,6 +2,7 @@
 @section('title')
 <title>Home</title>
 @endsection
+
 @push('scripts')
     {!! Html::script('assets/plugins/sweetalert/sweetalert.min.js') !!}
     <script>

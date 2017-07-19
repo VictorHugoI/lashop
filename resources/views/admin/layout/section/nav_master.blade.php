@@ -35,15 +35,15 @@
                 </a>
             </li>
             <li>
-                <a>
+                <a href="{{ route('categories.index') }}">
                     <i class="fa fa-th-large"></i>
                     <span class="nav-label">Category Management</span>
                     <span class="fa arrow"></span>
                 </a>
-                <ul class="nav nav-second-level">
+                {{-- <ul class="nav nav-second-level">
                     <li><a>Create new category</a></li>
                     <li><a>Edit a category</a></li>
-                </ul>
+                </ul> --}}
             </li>
             <li>
                 <a>
@@ -57,7 +57,7 @@
                 </ul>
             </li>
             <li>
-                <a>
+                <a href="{{ route('admins.index') }}">
                     <i class="fa fa-th-large"></i>
                     <span class="nav-label">User Management</span>
                 </a>

@@ -20,6 +20,12 @@
             },
         });
     });
+    $('.btnInfo').on('click', function (e) {
+        var url = $(this).data('url');
+        $.get(url, function (data) {
+            $('.modalDetailProduct').html(data.view);
+        })
+    })
 </script>
 @endpush
 @push('styles')
@@ -135,7 +141,7 @@
         </li>
     </div>
 
-    <div class="modal inmodal" id="myModal2" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal" id="myModal2" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-dialog modalDetailProduct" style="margin: 50px auto; width: 800px">
 
         </div>

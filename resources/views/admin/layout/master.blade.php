@@ -15,6 +15,7 @@
             'csrfToken' => csrf_token(),
         ]); ?>
     </script>
+    {!! Html::script('assets/plugins/toastr/toastr.min.js') !!}
 </head>
 <body>
     @include('admin.layout.section.nav_master')

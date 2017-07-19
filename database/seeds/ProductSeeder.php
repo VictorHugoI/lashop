@@ -25,10 +25,10 @@ class ProductSeeder extends Seeder
             'product18.jpg', 'product19.jpg', 'product20.jpg', 'product21.jpg', 'product22.jpg', 'product23.jpg', 'product24.jpg', 'product25.jpg'
         ];
 
-        for ($i = 0; $i < 100; $i ++) {
+        for ($i = 0; $i < 20; $i ++) {
             DB::table('products')->insert([
                 'name' => $faker->name,
-                'category_id' => rand(3, 6),
+                'category_id' => rand(113, 116),
                 'price' => rand(100, 999),
                 'description' => $description,
                 'brand_id' => rand(1, 12),

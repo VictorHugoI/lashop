@@ -9,7 +9,9 @@
         "fzaninotto/faker": "^1.6",
         "laravel/framework": "5.4.*",
         "laravel/tinker": "~1.0",
-        "laravelcollective/html": "^5.4.0"
+        "laravelcollective/html": "^5.4.0",
+        "symfony/dom-crawler": "~3.0",
+        "jacobbennett/pjax": "^1.0"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^2.4",

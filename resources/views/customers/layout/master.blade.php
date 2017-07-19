@@ -42,7 +42,7 @@
         <a style="display: inline;" id="fancybox-close"></a> </div>
 </div>
     @include('customers.layout.sections.header')
-    @stack('nav')
+    @include('customers.layout.sections.navbar')
     @yield('content')
     @yield('related')
     @include('customers.layout.sections.footer')

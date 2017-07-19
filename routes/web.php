@@ -12,12 +12,12 @@
 */
 
 Route::get('/', function () {
-    return view('customers.master');
+    return view('customers.layout.master');
 })->name('home');
 
 Route::group(['middleware' => 'web'], function () {
     Route::group(['namespace' => 'Admin', 'prefix' => 'admin' ], function () {
-        Route::get('home', 'HomeController@index')->middleware('admin.auth');
+        Route::get('home', 'HomeController@index');
 
         Route::group(['middleware' => 'admin.guest'], function () {
             Route::get('/', 'Auth\LoginController@showLoginForm');
@@ -35,21 +35,16 @@ Route::group(['middleware' => 'web'], function () {
 
         Route::resource('/categories', 'CategoriesController');
 
-
         Route::get('/product/getProperty/{categoryId}', 'ProductController@getProperty')->name('product.getProperty');
         Route::get('/product/getBottomCategory/{firstCategoryId}', 'ProductController@getBottomCategory')->name('product.getBottomCategory');
         Route::get('/product/addProperties/{id}', 'ProductController@addProperties')->name('product.addProperties');
         Route::post('/product/saveProperties', 'ProductController@saveProperties')->name('product.saveProperties');
         Route::post('/product/search', 'ProductController@search')->name('product.search');
         Route::resource('/product', 'ProductController');
-
+		Route::resource('/admins', 'AdminsController');
         //Route::resource('/productproperty', 'ProductPropertyController');
-
-        //setting system
-        Route::resource('/setting', 'SettingController');
     });
 });
-
 Route::post('logout', 'Auth\LoginController@logout')->name('logout'); // GUEST middleware???
 Route::group(['namespace' => 'Auth', 'prefix' => '', 'middleware' => 'guest'], function () {
     Route::get('login', 'LoginController@showLoginForm')->name('login');
@@ -66,7 +61,4 @@ Route::group(['namespace' => 'Customer', 'prefix' => '' ], function () {
     Route::resource('carts', 'CartController', ['except' => ['destroy', 'show']]);
     Route::post('carts/destroy', 'CartController@destroy');
     Route::post('carts/update-cart', 'CartController@updateCart');
-    Route::resource('products', 'ProductsController');
-    Route::resource('comments', 'CommentsController');
 });
-

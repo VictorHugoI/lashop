@@ -3,11 +3,6 @@
 <title>Check Out</title>
 @endsection
 @section('content')
-    @if(session('status'))
-        <div class="alert alert-success" role="alert">
-            <strong>{{ session('status') }}</strong>
-        </div>
-    @endif
 <section class="main-container col1-layout">
     <div class="main container">
         <div class="col-main">
@@ -118,13 +113,12 @@
                         $('#cartContent').html('');
                         $('#empty_cart_button').hide();
                         $('.btn-update').hide();
-                        $('.cart-collaterals').html('');
                         swal("Deleted!", "Success");
                     }
                 })
               
             });
         });
-    });
+    })
 </script>
 @endpush

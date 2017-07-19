@@ -2,9 +2,6 @@
 @section('title')
     <title>Home</title>
 @endsection
-@push('nav')
-    @include('customers.layout.sections.navcate')
-@endpush
 @push('scripts')
 {!! Html::script('assets/plugins/sweetalert/sweetalert.min.js') !!}
 

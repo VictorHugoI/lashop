@@ -61,6 +61,4 @@ Route::group(['namespace' => 'Customer', 'prefix' => '' ], function () {
     Route::resource('carts', 'CartController', ['except' => ['destroy', 'show']]);
     Route::post('carts/destroy', 'CartController@destroy');
     Route::post('carts/update-cart', 'CartController@updateCart');
-	Route::resource('products', 'ProductsController');
-	Route::resource('comments', 'CommentsController');
 });

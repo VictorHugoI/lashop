@@ -44,10 +44,8 @@
                     </li>
                 </ul>
             </li>
-
-
             <li>
-                <a>
+                <a href="#" onclick="document.getElementById('form-logout').submit();">
                     <i class="fa fa-sign-out"></i> Logout
                 </a>
             </li>
@@ -57,6 +55,7 @@
                 </a>
             </li>
         </ul>
-
+        {{ Form::open(['route' => 'admin.logout', 'id' => 'form-logout', 'style' => 'display : none']) }}
+        {{ Form::close() }}
     </nav>
 </div>

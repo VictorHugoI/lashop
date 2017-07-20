@@ -38,10 +38,22 @@ class Product extends Model
         return $this->hasMany(ProductProperty::class);
     }
 
+    public function comments()
+    {
+        return $this->hasMany(Comment::class);
+    }
+
     public function getProperty($name)
     {
         return $this->properties->first(function ($property) use ($name) {
             return $property->name === $name;
+        });
+    }
+
+    public function getUnit($name) 
+    {
+        return $this->category->categoryProperties->first(function ($unit) use ($name) {
+            return $unit->property_id === $name;
         });
     }
 
@@ -74,12 +86,5 @@ class Product extends Model
     public function getImageAttribute($image)
     {
         return url('assets/images/products-images') . '/' . $image;
-    }
-
-    public function getUnit($name)
-    {
-        return $this->category->categoryProperties->first(function ($unit) use ($name) {
-            return $unit->property_id === $name;
-        });
     }
 }

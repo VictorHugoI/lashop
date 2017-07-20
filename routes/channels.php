@@ -30,3 +30,4 @@ Broadcast::channel('comments.{productId}', function ($user, $productId) {
 //         return (int) $user->id === (int) $id;
 //     }
 // });
+// });

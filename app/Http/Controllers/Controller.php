@@ -14,6 +14,10 @@ class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 
+    protected $brands;
+
+    protected $allCategories;
+
     public function __construct()
     {
         $categoriesMenu = Category::createMenuCategory();
@@ -26,7 +30,12 @@ class Controller extends BaseController
         View::share('firstCategories', $firstCategories);
 
         $brands = Brand::pluck('name', 'id')->toArray();
+        $this->brands = $brands;
         View::share('brands', $brands);
+
+        $allCategories = Category::pluck('name', 'id')->toArray();
+        $this->allCategories = $allCategories;
+        View::share('allCategories', $allCategories);
 
         $measure = config('common.measure');
         View::share('measure', $measure);

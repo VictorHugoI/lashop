@@ -48,9 +48,48 @@
                 <!-- End Header Logo --> 
             </div>
             <div class="col-lg-7 col-sm-4 col-md-6 col-xs-12">
+                <style type="text/css">
+                    #search-result {
+                        position: absolute;
+                        top: 55px;
+                        border: 1px solid rgba(0,0,0,0.1);
+                        z-index: 1000;
+                        width: 660px;
+                        background: #fafafa;
+                        overflow: scroll;
+                        max-height: 500px;
+                    }
+                    #search-result {
+                        padding: 15px 10px;
+                    }
+                    #search-result li {
+                        padding:5px 10px;
+                    }
+                    #search-result li a{
+                        display: inline-block;
+                        width: 50%;
+                    }
+                    #search-result .header-search:hover {
+                        background: #ff4d4d;
+                        opacity: 0.8;
+                    }
+                    #search-result .header-search img {
+                        width: 50px !important;
+                        margin-right: 10px; 
+                    }
+                    #search-result .header-search:hover a {
+                        color: #fff;
+                    }
+                    #search-result .divider {
+                        background: #D6D6D6 !important;
+                        height: 1px;
+                        padding: 0px !important;
+                        margin: 10px 5px;
+                    }
+                </style>
                 <!-- Search-col -->
                 <div class="search-box">
-                    <form action="http://htmldemo.magikcommerce.com/ecommerce/inspire-html-template/digital/cat" method="POST" id="search_mini_form" name="Categories">
+                    <form action="{{ route('search.catalog') }}" method="GET" id="search_mini_form" name="Categories" autocomplete="off">
                         <select name="category_id" class="cate-dropdown hidden-xs">
                             <option value="0">All Categories</option>
                             <option value="36">Camera</option>
@@ -67,10 +106,14 @@
                             <option value="40">Televisions</option>
                             <option value="41">Featured</option>
                         </select>
-                        <input type="text" placeholder="Search here..." value="" maxlength="70" class="" name="search" id="search">
+                        <input type="text" placeholder="Search here..." value="" maxlength="70" class="" name="search" id="search" data-url="{{ route('search.list') }}">
                         <button id="submit-button" class="search-btn-bg"><span>Search</span></button>
                     </form>
+                    
                 </div>
+                <ul id="search-result" >
+                </ul>
+
                 <!-- End Search-col --> 
             </div>
             <!-- Top Cart -->
@@ -147,3 +190,49 @@
     </div>
 </header>
 
+@push('scripts')
+<script type="text/javascript">
+        $(document).ready(function (e) {
+            //ajax search
+            $('#search-result').hide();
+            var timer;
+            $(document).on('keyup', '#search', function () {
+                var url = $(this).data('url');
+                var keyword = $(this).val();
+            
+                if (keyword.length > 0) {
+                    if (timer) {
+                        clearTimeout(timer);
+                        timer =setTimeout(function () {
+                                $.ajax({
+                                    method : 'GET',
+                                    url : url,
+                                    data : {'keyword': keyword},
+                                    success : function (data) {
+                                        $('#search-result').show(); 
+                                        $('#search-result').html(data.html);
+                                    },
+                                });
+                            }, 1000);
+                    } else {
+                        timer =setTimeout(function () {
+                            $.ajax({
+                                method : 'GET',
+                                url : url,
+                                data : {'keyword': keyword},
+                                success : function (data) {
+                                    $('#search-result').show(); 
+                                    $('#search-result').html(data.html);
+                                },
+                            });
+                        }, 1000);
+                    }
+                }
+            });
+            
+            $(window).click(function () {
+                $('#search-result').hide();
+            });
+        });
+    </script>
+@endpush

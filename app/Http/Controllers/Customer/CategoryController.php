@@ -12,11 +12,15 @@ class CategoryController extends Controller
     {
         $cates = Category::getAllParentCategoriesById($id);
 
-        if (Category::getLastChildByParentId($id)) {
-            $products = Product::whereIn('category_id', array_keys(Category::getLastChildByParentId($id)))->paginate(12);
-        } else {
-            $products = Product::where('category_id', $id)->paginate(12);
-        }
-        return view('customers.category_product.index', compact('id', 'cates', 'products'));
+
+        $categoriesId = Category::getLastChildByParentId($id) ?
+            array_keys(Category::getLastChildByParentId($id)) : [$id];
+        $sumproduct = Product::whereIn('category_id', $categoriesId)->get();
+        $products = Product::whereIn('category_id', $categoriesId)->paginate(12);
+
+        $brands = Brand::whereIn('id', Product::whereIn('category_id', $categoriesId)
+            ->pluck('brand_id')->unique())->get();
+
+        return view('customers.category_product.index', compact('id', 'cates', 'products', 'brands', 'sumproduct'));
     }
 }

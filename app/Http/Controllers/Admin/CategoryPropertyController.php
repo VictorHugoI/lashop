@@ -53,11 +53,12 @@ class CategoryPropertyController extends Controller
     {
         $properties = Property::all();
         $chosenProperties = Category::find($id)->categoryProperties;
+        $filterProperties = $chosenProperties->where('is_filter', 1);
 
         return response()->json([
             'view' => view(
                 'admin.categoryProperty.component.table_property',
-                compact('properties', 'chosenProperties', 'id')
+                compact('properties', 'chosenProperties', 'id', 'filterProperties')
             )->render(),
         ]);
     }
@@ -80,17 +81,30 @@ class CategoryPropertyController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request)
+    public function isProperty(Request $request)
     {
         Category::find($request->category_id)
             ->properties()->toggle(Property::find($request->property_id));
 
         $cateProperty = CategoryProperty::where('category_id', $request->category_id)
-            ->where('property_id', $request->property_id)->get();
+            ->where('property_id', $request->property_id);
 
         if ($cateProperty->count() != 0) {
             $cateProperty->update(['unit' => $request->measure_unit]);
         }
+    }
+
+    public function isFilter(Request $request)
+    {
+        $cateProperty = CategoryProperty::where('category_id', $request->category_id)
+            ->where('property_id', $request->property_id);
+
+        if($cateProperty->first()->is_filter) {
+            $cateProperty->update(['is_filter' => null]);
+        } else {
+            $cateProperty->update(['is_filter' => 1]);
+        }
+
     }
 
     /**

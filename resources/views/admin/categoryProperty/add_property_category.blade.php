@@ -10,6 +10,7 @@
                 $('.table-responsive').html(data.view);
                 loadDataTable();
                 changechosenBox();
+                changeFilterBox();
             })
         });
         function loadDataTable() {
@@ -44,6 +45,7 @@
                         $('.modalCreateProperty').hide();
                         loadDataTable();
                         changechosenBox();
+                        changeFilterBox();
                     },
                     error: function (data) {
                         $('#errname').html(data.responseJSON.name[0]);
@@ -54,26 +56,51 @@
                 });
             });
         });
+
         $('.closeModal').on('click', function (e) {
             $('#overlay').hide();
             $('.createForm').hide();
         });
 
         function changechosenBox() {
-          $('.chosenBox').on('change', function (e) {
-              var cbox = $(e.currentTarget);
-              var form = cbox.closest('.gradeU').find('.tableProperty');
+            $('.chosenBox').on('change', function (e) {
+                var cbox = $(e.currentTarget);
+                var form = cbox.closest('.gradeU').find('.tableProperty');
+                var chosenFilter = cbox.closest('.gradeU').find('.chosenFilter');
 
-              $.ajax({
-                  url: form.attr('action'),
-                  type: 'POST',
-                  data: form.serialize(),
-                  success: function(data) {
-                      $('.table-responsive').html(data.view);
-                  }
-              });
-          });
+                $.ajax({
+                    url: form.attr('action'),
+                    type: 'POST',
+                    data: form.serialize(),
+                    success: function(data) {
+                        $('.table-responsive').html(data.view);
+                    }
+                });
+
+                if ($(this).prop("checked") == true) {
+                    chosenFilter.removeAttr("disabled");
+                } else {
+                    chosenFilter.removeAttr("checked");
+                    chosenFilter.attr("disabled", true);
+                }
+            });
         };
+
+        function changeFilterBox() {
+            $('.chosenFilter').on('change', function (e) {
+                var cbox = $(e.currentTarget);
+                var form = cbox.closest('.gradeU').find('.isFilterForm');
+
+                $.ajax({
+                    url: form.attr('action'),
+                    type: 'POST',
+                    data: form.serialize(),
+                    success: function(data) {
+                        console.log(data);
+                    }
+                });
+            });
+        }
     </script>
 @endpush
 @push('styles')

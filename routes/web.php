@@ -30,9 +30,9 @@ Route::group(['middleware' => 'web'], function () {
 
         Route::resource('/property', 'PropertyController');
 
+        Route::post('/categoryProperty/isProperty', 'CategoryPropertyController@isProperty')->name('categoryProperty.isProperty');
+        Route::post('/categoryProperty/isFilter', 'CategoryPropertyController@isFilter')->name('categoryProperty.isFilter');
         Route::resource('/categoryProperty', 'CategoryPropertyController', ['except' => ['update']]);
-        Route::post('/categoryProperty/update', 'CategoryPropertyController@update')->name('categoryProperty.update');
-
 
         Route::resource('/categories', 'CategoriesController');
 

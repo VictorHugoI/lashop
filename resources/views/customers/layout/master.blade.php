@@ -17,10 +17,7 @@
         <link href='https://fonts.googleapis.com/css?family=Roboto:400,500,700' rel='stylesheet' type='text/css'>
         {!! Html::script('assets/plugins/sweetalert/sweetalert.min.js') !!}
         {!! Html::style('assets/plugins/sweetalert/sweetalert.css') !!}
-
-
-
-    {!! Html::script('assets/js/jquery.min.js') !!}
+        {!! Html::script('assets/js/jquery.min.js') !!}
     {!! Html::script('https://cdnjs.cloudflare.com/ajax/libs/jquery.pjax/2.0.1/jquery.pjax.js') !!}
         @yield('css')
         @stack('styles')
@@ -127,6 +124,7 @@
             }
         });
     </script>
+    
     {!! Html::script('assets/js/app.js') !!}
     @stack('scripts')
 

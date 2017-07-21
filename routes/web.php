@@ -42,7 +42,7 @@ Route::group(['middleware' => 'web'], function () {
         Route::post('/product/saveProperties', 'ProductController@saveProperties')->name('product.saveProperties');
         Route::post('/product/search', 'ProductController@search')->name('product.search');
         Route::resource('/product', 'ProductController');
-		Route::resource('/admins', 'AdminsController');
+        Route::resource('/admins', 'AdminsController');
         //Route::resource('/productproperty', 'ProductPropertyController');
     });
 });
@@ -56,10 +56,14 @@ Route::group(['namespace' => 'Auth', 'prefix' => '', 'middleware' => 'guest'], f
 });
 
 Route::group(['namespace' => 'Customer', 'prefix' => '' ], function () {
+    //search
+    Route::get('catalog', 'ProductSearchController@search')->name('search.catalog');
+    Route::get('/home/search/list', 'ProductSearchController@searchList')->name('search.list');
+
     Route::resource('comments', 'CommentsController');
     Route::get('/{id}', 'HomeController@show');
     Route::get('/', 'HomeController@index')->name('home');
-    // 
+    //
     Route::get('/category/{id}', 'CategoryController@show')->name('category.show');
     Route::resource('billing', 'BillingController', ['only' => ['store']]);
     Route::resource('carts', 'CartController', ['except' => ['destroy', 'show']]);

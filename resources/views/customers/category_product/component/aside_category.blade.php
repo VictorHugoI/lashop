@@ -1,3 +1,7 @@
+@php
+    if (!isset($id))
+        $id = 0
+@endphp
 @foreach ($categories as $category)
     @if($category['level'] == 0)
     <li class="cap1">
